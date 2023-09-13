@@ -1,8 +1,10 @@
 package com.example.begin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -15,6 +17,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         getRefugiados()
         setContentView(R.layout.activity_main)
+
+        val tvLogin = findViewById<TextView>(R.id.tvLogin)
+
+        tvLogin.setOnClickListener({
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        })
     }
 
     private fun getRefugiados() {

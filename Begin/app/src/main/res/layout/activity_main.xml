@@ -8,7 +8,7 @@
     tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnVoluntario"
         android:layout_width="251dp"
         android:layout_height="56dp"
         android:backgroundTint="#FFFFFF"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.688" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnRefugiado"
         android:layout_width="251dp"
         android:layout_height="56dp"
         android:layout_marginBottom="36dp"
@@ -30,13 +30,13 @@
         android:text="Preciso de ajuda!"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/tvLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnVoluntario" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Já possui conta? Conecte-se"
