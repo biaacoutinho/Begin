@@ -1,9 +1,10 @@
 const express = require('express')
+const router = express.Router()
+
 const ctrRef = require('./Controller/refugiadoController')
 const ctrVolun = require('./Controller/voluntarioController')
 const ctrCon = require('./Controller/conexaoController')
 const crtAv = require('./Controller/avaliacaoController')
-const router = express.Router()
 
 router.get('/refugiados', ctrRef.getRefugiados)
 router.get('/refugiado/:username', ctrRef.getRefugiado)
