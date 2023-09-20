@@ -15,25 +15,27 @@
         android:text="Quero ajudar!"
         android:textColor="#4682A9"
         android:textSize="20dp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.688" />
+        app:layout_constraintVertical_bias="0.678" />
 
     <Button
         android:id="@+id/btnRefugiado"
         android:layout_width="251dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="36dp"
         android:backgroundTint="#4682A9"
         android:text="Preciso de ajuda!"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvLogin"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVoluntario" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.78" />
 
     <TextView
         android:id="@+id/tvLogin"
@@ -41,6 +43,7 @@
         android:layout_height="wrap_content"
         android:text="Já possui conta? Conecte-se"
         android:textSize="18dp"
+        android:textColor="#4A55A2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

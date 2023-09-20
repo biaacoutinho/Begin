@@ -13,7 +13,11 @@
         android:theme="@style/Theme.Frontend"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".activty_logon"
+=======
+            android:name=".InicialRefugiado"
+>>>>>>> d7714d7ad14a8873a694a0ba2ae0f2fa029ab5ba
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
