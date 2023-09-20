@@ -17,11 +17,12 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="BEGIN"
-            android:textSize="20sp"
             android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </HorizontalScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
