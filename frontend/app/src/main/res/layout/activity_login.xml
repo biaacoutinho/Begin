@@ -40,25 +40,26 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/login_username"
-            android:background="#C9CCD5"
+            android:background="#DBE0EF"
             android:layout_marginTop="40dp"
             android:padding="8dp"
             android:hint="Username"
             android:drawablePadding="8dp"
             android:textColor="#4A55A2"
-            />
+            android:drawableLeft="@drawable/username_icon"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/login_password"
-            android:background="#C9CCD5"
+            android:background="#DBE0EF"
             android:layout_marginTop="20dp"
             android:padding="8dp"
             android:hint="Password"
             android:inputType="textPassword"
             android:drawablePadding="8dp"
-            android:textColor="#4A55A2" />
+            android:textColor="#4A55A2"
+            android:drawableLeft="@drawable/password_icon"/>
 
         <Button
             android:id="@+id/login_button"
