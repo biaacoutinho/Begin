@@ -23,28 +23,14 @@
         app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/logo" />
 
-<<<<<<< HEAD
-        <TextView
-            android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="BEGIN"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </HorizontalScrollView>
-
-    <LinearLayout
-=======
     <TextView
         android:id="@+id/textView2"
->>>>>>> d7714d7ad14a8873a694a0ba2ae0f2fa029ab5ba
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="24dp"
+        android:gravity="center"
         android:text="Login"
         android:textAlignment="center"
         android:textColor="@color/black"
