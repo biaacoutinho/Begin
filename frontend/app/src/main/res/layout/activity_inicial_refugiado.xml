@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".InicialRefugiado">
+    tools:context=".InicialRefugiado"
+    android:background="#F1F0E8">
 
     <TextView
         android:id="@+id/txtLogo"

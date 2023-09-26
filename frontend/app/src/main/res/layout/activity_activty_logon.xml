@@ -7,7 +7,9 @@
     android:orientation="vertical"
     tools:context=".activty_logon"
     android:layout_gravity="center_horizontal"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="#F1F0E8" >
+
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="100dp">
@@ -45,22 +47,24 @@
            android:textAlignment="center"
            android:textStyle="bold"
            android:textColor="@color/black" />
+
        <EditText
+           android:id="@+id/logon_username"
            android:layout_width="match_parent"
            android:layout_height="50dp"
-           android:id="@+id/logon_username"
-           android:background="#DBE0EF"
            android:layout_marginTop="40dp"
-           android:padding="8dp"
-           android:hint="Username"
+           android:background="@drawable/rounded_input"
+           android:drawableLeft="@drawable/username_icon"
            android:drawablePadding="8dp"
-           android:textColor="#4A55A2"
-           android:drawableLeft="@drawable/username_icon"/>
+           android:hint="Username"
+           android:padding="8dp"
+           android:textColor="#4A55A2" />
+
        <EditText
            android:layout_width="match_parent"
            android:layout_height="50dp"
            android:id="@+id/logon_name"
-           android:background="#DBE0EF"
+           android:background="@drawable/rounded_input"
            android:layout_marginTop="10dp"
            android:padding="8dp"
            android:hint="Nome"
@@ -71,7 +75,7 @@
            android:layout_width="match_parent"
            android:layout_height="50dp"
            android:id="@+id/logon_password"
-           android:background="#DBE0EF"
+           android:background="@drawable/rounded_input"
            android:layout_marginTop="20dp"
            android:padding="8dp"
            android:hint="Senha"
@@ -83,7 +87,7 @@
            android:layout_width="match_parent"
            android:layout_height="50dp"
            android:id="@+id/logon_confirmePassword"
-           android:background="#DBE0EF"
+           android:background="@drawable/rounded_input"
            android:layout_marginTop="20dp"
            android:padding="8dp"
            android:hint="Confirmar Senha"
@@ -106,16 +110,14 @@
            app:cornerRadius="20dp" />
 
        <TextView
+           android:id="@+id/signinRedirectText"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:id="@+id/signinRedirectText"
-           android:text="Já possui conta? Conecte-se"
            android:layout_gravity="center"
-           android:padding="8dp"
-           android:layout_marginTop="10dp"
-           android:textColor="#4A55A2"
            android:layout_margin="49dp"
-           android:textSize="18sp"/>
+           android:text="Já possui conta? Conecte-se"
+           android:textColor="#4A55A2"
+           android:textSize="18sp" />
    </LinearLayout>
 
 </LinearLayout>
