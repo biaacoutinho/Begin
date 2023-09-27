@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="#F1F0E8"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="65dp"
+        android:text="BEGIN"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.629"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="90dp"
+        android:layout_height="88dp"
+        android:layout_marginEnd="12dp"
+        android:clickable="true"
+        android:contentDescription="Botão para voltar ao login do voluntário"
+        app:backgroundTint="@android:color/transparent"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024"
+        app:srcCompat="@drawable/arrow_icon" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnPerfilVoluntario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="608dp"
+        android:clickable="true"
+        android:contentDescription="Botão para acessar o perfil do refugiado"
+        app:backgroundTint="#C9CCD5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/username_icon" />
+
+    <LinearLayout
+        android:id="@+id/secaoDoacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="124dp"
+        android:background="@drawable/rounded_edittext_searchbar"
+        android:backgroundTint="#91C8E4"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnDoacao"
+            android:layout_width="253dp"
+            android:layout_height="117dp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="#91C8E4"
+            android:paddingStart="25dp"
+            android:text="Fazer Doação"
+            android:textAlignment="textStart"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="20dp"
+            android:src="@drawable/frame__1_" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secaoSolicitacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="264dp"
+        android:background="@drawable/rounded_edittext_searchbar"
+        android:backgroundTint="#91C8E4"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnSolicitacao"
+            android:layout_width="253dp"
+            android:layout_height="117dp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="#91C8E4"
+            android:paddingStart="25dp"
+            android:text="Solicitações de Conexões"
+            android:textAlignment="textStart"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="20dp"
+            android:src="@drawable/solicitacao_icon" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/conexoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="152dp"
+        android:layout_marginBottom="240dp"
+        android:text="Suas conexões"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/sesaoConexoes"
+        android:layout_width="349dp"
+        android:layout_height="194dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="452dp"
+        android:background="@drawable/rounded_edittext_searchbar"
+        android:backgroundTint="#FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        ]
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
