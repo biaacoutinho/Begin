@@ -54,7 +54,8 @@
         app:backgroundTint="#C9CCD5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/username_icon" />
+        app:srcCompat="@drawable/username_icon"
+        android:contentDescription="NULL" />
 
     <LinearLayout
         android:id="@+id/ong1"
