@@ -13,6 +13,20 @@
         android:theme="@style/Theme.Frontend"
         tools:targetApi="31">
         <activity
+            android:name=".CadastroRefugiado"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".perfilRefugiado"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".InicialRefugiado"
             android:exported="false">
             <meta-data

@@ -5,8 +5,172 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="15dp"
     tools:context=".InicialRefugiado"
     android:background="#F1F0E8">
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPesquisar"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/secaoConexaoVoluntarios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/rounded_edittext_searchbar"
+                android:backgroundTint="#91C8E4"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnConectaVol"
+                    android:layout_width="253dp"
+                    android:layout_height="117dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="#91C8E4"
+                    android:paddingStart="25dp"
+                    android:text="Conecte-se com Voluntários"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/casaicon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secaoDoacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/rounded_edittext_searchbar"
+                android:backgroundTint="#91C8E4"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnDoacao"
+                    android:layout_width="253dp"
+                    android:layout_height="117dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="#91C8E4"
+                    android:paddingStart="25dp"
+                    android:text="Fazer Doação"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/casaicon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secaoAssistMedica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/rounded_edittext_searchbar"
+                android:backgroundTint="#91C8E4"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAssistMedica"
+                    android:layout_width="253dp"
+                    android:layout_height="117dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="#91C8E4"
+                    android:paddingStart="25dp"
+                    android:text="Assistencia Médica"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/casaicon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secaoAlimentacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/rounded_edittext_searchbar"
+                android:backgroundTint="#91C8E4"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAlimentacao"
+                    android:layout_width="253dp"
+                    android:layout_height="117dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="#91C8E4"
+                    android:paddingStart="25dp"
+                    android:text="Alimentacao"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/casaicon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secaoAbrigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/rounded_edittext_searchbar"
+                android:backgroundTint="#91C8E4"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAbrigo"
+                    android:layout_width="253dp"
+                    android:layout_height="117dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="#91C8E4"
+                    android:paddingStart="25dp"
+                    android:text="Abrigo"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/casaicon" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/txtLogo"
@@ -56,74 +220,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/txtLogo" />
-
-    <LinearLayout
-        android:id="@+id/secaoAbrigo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="50dp"
-        android:orientation="horizontal"
-        android:background="@drawable/rounded_edittext_searchbar"
-        android:backgroundTint="#91C8E4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPesquisar">
-
-        <Button
-            android:id="@+id/btnAbrigo"
-            android:layout_width="253dp"
-            android:layout_height="117dp"
-            android:backgroundTint="#91C8E4"
-            android:paddingStart="25dp"
-            android:layout_marginStart="10dp"
-            android:text="Abrigo"
-            android:textAlignment="textStart"
-            android:textSize="20dp" />
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="20dp"
-            android:src="@drawable/casaicon"
-            android:layout_gravity="center_vertical"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/secaoAlimentacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="50dp"
-        android:orientation="horizontal"
-        android:background="@drawable/rounded_edittext_searchbar"
-        android:backgroundTint="#91C8E4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/secaoAbrigo">
-
-        <Button
-            android:id="@+id/btnAlimentacao"
-            android:layout_width="253dp"
-            android:layout_height="117dp"
-            android:backgroundTint="#91C8E4"
-            android:paddingStart="25dp"
-            android:layout_marginStart="10dp"
-            android:text="Alimentacao"
-            android:textAlignment="textStart"
-            android:textSize="20dp" />
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="20dp"
-            android:src="@drawable/casaicon"
-            android:layout_gravity="center_vertical"
-            />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
