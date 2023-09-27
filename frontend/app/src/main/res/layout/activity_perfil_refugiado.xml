@@ -8,12 +8,9 @@
 
     <LinearLayout
         android:id="@+id/sesaoCabecalho"
-        android:layout_width="437dp"
+        android:layout_width="match_parent"
         android:layout_height="49dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/rounded_edittext_searchbar"
-        android:backgroundTint="#91C8E4"
+        android:background="#91C8E4"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -49,17 +46,17 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btLogOut"
-            android:layout_width="90dp"
-            android:layout_height="88dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:clickable="true"
             android:contentDescription="Botão para voltar ao login do voluntário"
             app:backgroundTint="@android:color/transparent"
             app:borderWidth="0dp"
             app:elevation="0dp"
-            android:layout_marginLeft="-100dp"
+            android:layout_marginLeft="-50dp"
             app:srcCompat="@drawable/icon_logout"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="338dp" />
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="400dp" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -199,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
 
-                    android:text="Telefone"
+                    android:text="Telefone:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"

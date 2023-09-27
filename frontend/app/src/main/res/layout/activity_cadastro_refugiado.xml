@@ -64,22 +64,21 @@
         android:layout_height="50dp"
         android:layout_marginBottom="360dp"
         android:background="@drawable/rounded_input"
-        android:drawableLeft="@drawable/username_icon"
+        android:drawableLeft="@drawable/name_icon"
         android:drawablePadding="8dp"
         android:hint="Nome"
         android:padding="8dp"
         android:textColor="#4A55A2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toEndOf="@id/cadastro_usernameRef" />
+        app:layout_constraintStart_toStartOf="parent"  />
 
     <EditText
         android:id="@+id/cadastro_IdiomasRef"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/rounded_input"
-        android:drawableLeft="@drawable/username_icon"
+        android:drawableLeft="@drawable/icon_idioma"
         android:drawablePadding="8dp"
         android:hint="Idiomas"
         android:padding="8dp"

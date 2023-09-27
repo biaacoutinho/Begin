@@ -79,7 +79,7 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="20dp"
-                    android:src="@drawable/casaicon" />
+                    android:src="@drawable/frame__1_" />
             </LinearLayout>
 
             <LinearLayout
@@ -108,7 +108,7 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="20dp"
-                    android:src="@drawable/casaicon" />
+                    android:src="@drawable/frame__2_" />
             </LinearLayout>
 
             <LinearLayout
