@@ -7,6 +7,7 @@ exports.getRefugiados = ('/refugiados', async(req, res) => {
       throw error;
     }
     res.json(data);
+    print(res.json(data))
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

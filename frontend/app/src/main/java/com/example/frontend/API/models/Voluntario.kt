@@ -2,7 +2,7 @@ package com.example.frontend.API.models
 
 import com.google.gson.annotations.SerializedName
 
-data class VoluntarioModel(
+data class Voluntario(
     @SerializedName("username")
     val username: String,
 
