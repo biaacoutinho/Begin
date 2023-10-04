@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/secaoConexaoVoluntarios"
+                android:id="@+id/secaoAbrigo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -35,15 +35,17 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnConectaVol"
+                    android:id="@+id/btnAbrigo"
                     android:layout_width="253dp"
-                    android:layout_height="117dp"
+                    android:layout_height="90dp"
                     android:layout_marginStart="10dp"
                     android:backgroundTint="#91C8E4"
                     android:paddingStart="25dp"
-                    android:text="Conecte-se com Voluntários"
+                    android:text="Abrigo"
                     android:textAlignment="textStart"
-                    android:textSize="20dp" />
+                    android:textColor="@color/black"
+                    android:textSize="23dp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="60dp"
@@ -51,10 +53,13 @@
                     android:layout_gravity="center_vertical"
                     android:layout_margin="20dp"
                     android:src="@drawable/casaicon" />
+
             </LinearLayout>
 
+
+
             <LinearLayout
-                android:id="@+id/secaoDoacao"
+                android:id="@+id/secaoAlimentacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -64,22 +69,24 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnDoacao"
+                    android:id="@+id/btnAlimentacao"
                     android:layout_width="253dp"
-                    android:layout_height="117dp"
+                    android:layout_height="90dp"
                     android:layout_marginStart="10dp"
                     android:backgroundTint="#94ADD7"
                     android:paddingStart="25dp"
-                    android:text="Fazer Doação"
+                    android:text="Alimentacao"
                     android:textAlignment="textStart"
-                    android:textSize="20dp" />
+                    android:textColor="@color/black"
+                    android:textSize="23dp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="20dp"
-                    android:src="@drawable/frame__1_" />
+                    android:src="@drawable/icon_alimentacao" />
             </LinearLayout>
 
             <LinearLayout
@@ -95,13 +102,15 @@
                 <Button
                     android:id="@+id/btnAssistMedica"
                     android:layout_width="253dp"
-                    android:layout_height="117dp"
+                    android:layout_height="90dp"
                     android:layout_marginStart="10dp"
                     android:backgroundTint="#749BC2"
                     android:paddingStart="25dp"
                     android:text="Assistencia Médica"
                     android:textAlignment="textStart"
-                    android:textSize="20dp" />
+                    android:textColor="@color/black"
+                    android:textSize="23dp"
+                    android:textStyle="bold"  />
 
                 <ImageView
                     android:layout_width="60dp"
@@ -112,7 +121,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/secaoAlimentacao"
+                android:id="@+id/secaoDoacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -122,42 +131,44 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnAlimentacao"
+                    android:id="@+id/btnDoacao"
                     android:layout_width="253dp"
-                    android:layout_height="117dp"
+                    android:layout_height="90dp"
                     android:layout_marginStart="10dp"
                     android:backgroundTint="#4A7FB5"
                     android:paddingStart="25dp"
-                    android:text="Alimentacao"
+                    android:text="Fazer Doação"
                     android:textAlignment="textStart"
-                    android:textSize="20dp" />
+                    android:textColor="@color/black"
+                    android:textSize="23dp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="20dp"
-                    android:src="@drawable/casaicon" />
+                    android:src="@drawable/frame__1_" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/secaoAbrigo"
+                android:id="@+id/secaoConexaoVoluntarios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/rounded_edittext_searchbar"
-                android:backgroundTint="#91C8E4"
+                android:backgroundTint="#4682A9"
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnAbrigo"
+                    android:id="@+id/btnConectaVol"
                     android:layout_width="253dp"
-                    android:layout_height="117dp"
+                    android:layout_height="90dp"
                     android:layout_marginStart="10dp"
-                    android:backgroundTint="#91C8E4"
+                    android:backgroundTint="#4682A9"
                     android:paddingStart="25dp"
-                    android:text="Abrigo"
+                    android:text="Conecte-se com Voluntários"
                     android:textAlignment="textStart"
                     android:textSize="20dp" />
 
@@ -167,8 +178,11 @@
                     android:layout_gravity="center_vertical"
                     android:layout_margin="20dp"
                     android:src="@drawable/casaicon" />
-
             </LinearLayout>
+
+
+
+
         </LinearLayout>
     </ScrollView>
 
@@ -208,7 +222,7 @@
 
     <EditText
         android:id="@+id/txtPesquisar"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="100dp"

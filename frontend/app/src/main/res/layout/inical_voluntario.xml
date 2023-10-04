@@ -96,7 +96,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="264dp"
         android:background="@drawable/rounded_edittext_searchbar"
-        android:backgroundTint="#91C8E4"
+        android:backgroundTint="#4682A9"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -106,7 +106,7 @@
             android:layout_width="253dp"
             android:layout_height="117dp"
             android:layout_marginStart="10dp"
-            android:backgroundTint="#91C8E4"
+            android:backgroundTint="#4682A9"
             android:paddingStart="25dp"
             android:text="Solicitações de Conexões"
             android:textAlignment="textStart"
