@@ -9,13 +9,9 @@ class RetrofitClient {
     companion object {
         fun getRetrofit(): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("http://177.220.18.18:3000")
+                .baseUrl("http://192.168.0.101:3000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
-
-        val retrofitClient = RetrofitClient.getRetrofit()
-        val refugiadoService = retrofitClient.create(RefugiadoService::class.java)
-        val voluntarioService = retrofitClient.create(VoluntarioService::class.java)
     }
 }

@@ -6,13 +6,14 @@ import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface VoluntarioService {
     @GET("/voluntarios")
     fun getVoluntarios(): Call<List<Voluntario>>
 
     @GET("/voluntario/{username}")
-    fun getVoluntario(username:String): Call<List<Voluntario>>
+    fun getVoluntario(@Path("username") username: String): Call<List<Voluntario>>
 
     @POST("/voluntario")
     fun postVoluntario(refugiado: Voluntario): Call<List<Voluntario>>
