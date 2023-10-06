@@ -36,93 +36,93 @@ class Login : AppCompatActivity() {
         Log.d("MinhaTag", "Antes de chamar o serviço Retrofit")
 
         btnLogin.setOnClickListener {
-            val retrofitClient = RetrofitClient.getRetrofit()
-            val service = retrofitClient.create(RefugiadoService::class.java)
-            val usernameToCheck = txtUsername.text.toString()
-            val passwordToCheck = txtSenha.text.toString()
-
-            val callback = service.getRefugiado(usernameToCheck)
-
-            Log.d("username digitado", usernameToCheck)
-
-            callback.enqueue(object : retrofit2.Callback<List<Refugiado>> {
-                override fun onResponse(
-                    call: Call<List<Refugiado>>?,
-                    response: Response<List<Refugiado>>?
-                ) {
-                    if (response!!.isSuccessful) {
-                        val refugiadosList = response.body()
-
-                        if (refugiadosList != null) {
-                            Log.d("entrou aqui", "aff")
-                            for (refugiado in refugiadosList) {
-                                if (refugiado.username == usernameToCheck) {
-                                    Log.d("senha", refugiado.senha)
-                                    Log.d("senha escrita", passwordToCheck)
-                                    if (refugiado.senha == passwordToCheck)
-                                        Toast.makeText(this@Login, "Login feito com sucesso", Toast.LENGTH_LONG).show()
-                                    else
-                                        Toast.makeText(this@Login, "senha incorreta", Toast.LENGTH_LONG).show()
-                                }
-                                else
-                                    Toast.makeText(this@Login, "usuário inexistente", Toast.LENGTH_LONG).show()
-                            }
-                                val service = retrofitClient.create(VoluntarioService::class.java)
-                                val callback = service.getVoluntario(usernameToCheck)
-                                callback.enqueue(object : retrofit2.Callback<List<Voluntario>> {
-                                    override fun onResponse(
-                                        call: Call<List<Voluntario>>?,
-                                        response: Response<List<Voluntario>>?
-                                    ) {
-                                        if (response!!.isSuccessful) {
-                                            val voluntariosList = response.body()
-
-                                            if (voluntariosList != null) {
-                                                for (refugiado in voluntariosList) {
-                                                    if (refugiado.username == usernameToCheck) {
-                                                        Log.d("senha", refugiado.senha)
-                                                        Log.d("senha escrita", passwordToCheck)
-                                                        if (refugiado.senha == passwordToCheck)
-                                                            Toast.makeText(this@Login, "Login feito com  - Voluntario", Toast.LENGTH_LONG).show()
-                                                        else
-                                                            Toast.makeText(this@Login, "senha incorreta", Toast.LENGTH_LONG).show()
-                                                    }
-                                                    else
-                                                        Toast.makeText(this@Login, "usuário inexistente", Toast.LENGTH_LONG).show()
-                                                }
-                                            }
-
-                                        } else {
-                                            val errorMessage = response?.errorBody().toString()
-                                            Log.d("erro aqui", errorMessage)
-                                            Toast.makeText(this@Login, errorMessage, Toast.LENGTH_LONG).show()
-                                        }
-                                    }
-
-                                    override fun onFailure(call: Call<List<Voluntario>>?, t: Throwable?) {
-                                        Toast.makeText(this@Login, "Aqui", Toast.LENGTH_LONG).show()
-                                        val messageProblem: String = t?.message.toString()
-                                        Log.d("erro", messageProblem)
-                                        Toast.makeText(this@Login, messageProblem, Toast.LENGTH_LONG).show()
-                                    }
-                                })
-                        }
-
-
-                    } else {
-                        val errorMessage = response?.errorBody().toString()
-                        Log.d("erro aqui", errorMessage)
-                        Toast.makeText(this@Login, errorMessage, Toast.LENGTH_LONG).show()
-                    }
-                }
-
-                override fun onFailure(call: Call<List<Refugiado>>?, t: Throwable?) {
-                    Toast.makeText(this@Login, "Aqui", Toast.LENGTH_LONG).show()
-                    val messageProblem: String = t?.message.toString()
-                    Log.d("erro", messageProblem)
-                    Toast.makeText(this@Login, messageProblem, Toast.LENGTH_LONG).show()
-                }
-            })
+            verificarLoginRefugiado(txtUsername.text.toString(), txtSenha.text.toString())
         }
+    }
+
+    fun verificarLoginRefugiado(username: String, senha: String) {
+        val retrofitClient = RetrofitClient.getRetrofit()
+        val service = retrofitClient.create(RefugiadoService::class.java)
+
+        val callback = service.getRefugiado(username)
+
+        callback.enqueue(object : retrofit2.Callback<List<Refugiado>> {
+            override fun onResponse(
+                call: Call<List<Refugiado>>?,
+                response: Response<List<Refugiado>>?
+            ) {
+                if (response!!.isSuccessful) {
+                    val refugiadosList = response.body()
+
+                    if (refugiadosList != null) {
+                        for (refugiado in refugiadosList) {
+                            if (refugiado.username == username) {
+                                if (refugiado.senha == senha)
+                                {
+                                    Toast.makeText(this@Login, "Login feito com sucesso", Toast.LENGTH_LONG).show()
+                                    val intent = Intent(this@Login, InicialRefugiado::class.java)
+                                    startActivity(intent)
+                                }
+
+                                else
+                                    Toast.makeText(this@Login, "Senha Incorreta", Toast.LENGTH_LONG).show()
+                            }
+                            else
+                                Toast.makeText(this@Login, "Usuário Inexistente", Toast.LENGTH_LONG).show()
+                        }
+                        verificarLoginVoluntario(username, senha)
+                    }
+
+
+                } else {
+                    val errorMessage = response?.errorBody().toString()
+                    Toast.makeText(this@Login, errorMessage, Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Refugiado>>?, t: Throwable?) {
+                val messageProblem: String = t?.message.toString()
+                Toast.makeText(this@Login, messageProblem, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    fun verificarLoginVoluntario(username: String, senha: String) {
+        val retrofitClient = RetrofitClient.getRetrofit()
+        val service = retrofitClient.create(VoluntarioService::class.java)
+        val callback = service.getVoluntario(username)
+
+        callback.enqueue(object : retrofit2.Callback<List<Voluntario>> {
+            override fun onResponse(
+                call: Call<List<Voluntario>>?,
+                response: Response<List<Voluntario>>?
+            ) {
+                if (response!!.isSuccessful) {
+                    val voluntariosList = response.body()
+
+                    if (voluntariosList != null) {
+                        for (refugiado in voluntariosList) {
+                            if (refugiado.username == username) {
+                                if (refugiado.senha == senha)
+                                    Toast.makeText(this@Login, "Login feito com sucesso", Toast.LENGTH_LONG).show()
+                                else
+                                    Toast.makeText(this@Login, "Senha Incorreta", Toast.LENGTH_LONG).show()
+                            }
+                            else
+                                Toast.makeText(this@Login, "Usuário Inexistente", Toast.LENGTH_LONG).show()
+                        }
+                    }
+
+                } else {
+                    val errorMessage = response?.errorBody().toString()
+                    Toast.makeText(this@Login, errorMessage, Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Voluntario>>?, t: Throwable?) {
+                val messageProblem: String = t?.message.toString()
+                Toast.makeText(this@Login, messageProblem, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }
