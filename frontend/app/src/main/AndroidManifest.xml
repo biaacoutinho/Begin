@@ -58,6 +58,9 @@
         <activity
             android:name=".InicialVoluntario">
         </activity>
+        <activity
+            android:name=".activty_logon">
+        </activity>
     </application>
 
 </manifest>

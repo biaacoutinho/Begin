@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         btnVoluntario.setOnClickListener({
-            val intent = Intent( this, InicialVoluntario::class.java)
+            val intent = Intent( this, activty_logon::class.java)
             startActivity(intent)
         })
     }
