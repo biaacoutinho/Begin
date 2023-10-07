@@ -36,7 +36,18 @@ class Login : AppCompatActivity() {
         Log.d("MinhaTag", "Antes de chamar o serviço Retrofit")
 
         btnLogin.setOnClickListener {
-            verificarLoginRefugiado(txtUsername.text.toString(), txtSenha.text.toString())
+            if (txtUsername.text.toString() != "")
+            {
+                Log.d("username invalido", "digite username")
+                if (txtSenha.text.toString() != "")
+                {
+                    verificarLoginRefugiado(txtUsername.text.toString(), txtSenha.text.toString())
+                }
+                else
+                    Toast.makeText(this@Login, "Digite uma senha para continuar", Toast.LENGTH_LONG).show()
+            }
+            else
+                Toast.makeText(this@Login, "Digite um username para continuar", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -103,8 +114,11 @@ class Login : AppCompatActivity() {
                     if (voluntariosList != null) {
                         for (refugiado in voluntariosList) {
                             if (refugiado.username == username) {
-                                if (refugiado.senha == senha)
+                                if (refugiado.senha == senha) {
                                     Toast.makeText(this@Login, "Login feito com sucesso", Toast.LENGTH_LONG).show()
+                                    val intent = Intent(this@Login, InicialVoluntario::class.java)
+                                    startActivity(intent)
+                                }
                                 else
                                     Toast.makeText(this@Login, "Senha Incorreta", Toast.LENGTH_LONG).show()
                             }
