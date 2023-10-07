@@ -2,6 +2,7 @@ package com.example.frontend.API.services
 
 import com.example.frontend.API.models.Voluntario
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -16,7 +17,7 @@ interface VoluntarioService {
     fun getVoluntario(@Path("username") username: String): Call<List<Voluntario>>
 
     @POST("/voluntario")
-    fun postVoluntario(refugiado: Voluntario): Call<List<Voluntario>>
+    fun postVoluntario(@Body voluntario: Voluntario): Call<Voluntario>
 
     @PUT("/voluntario/{username}")
     fun putVoluntario(username: String, voluntario: Voluntario): Call<Voluntario>

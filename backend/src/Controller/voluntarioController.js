@@ -35,7 +35,7 @@ exports.putVoluntario = ('/voluntario', async(req, res) => {
   const telefone = req.body.telefone;
   const habilidade = req.body.habilidade;
   const email = req.body.email;
-
+  console.log("foiii")
   try {
     const { data, error } = await db
       .from('Voluntario')
