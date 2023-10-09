@@ -2,6 +2,7 @@ package com.example.frontend.API.services
 
 import com.example.frontend.API.models.Refugiado
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Path
 import retrofit2.http.DELETE
@@ -16,10 +17,10 @@ interface RefugiadoService {
     @GET("/refugiado/{username}")
     fun getRefugiado(@Path("username") username: String): Call<List<Refugiado>>
 
-    @POST("/refugiado")
+    @PUT("/refugiado")
     fun postRefugiado(@Body refugiado: Refugiado): Call<Refugiado>
 
-    @PUT("/refugiado/{username}")
+    @POST("/refugiado/{username}")
     fun putRefugido(username: String, refugiado: Refugiado): Call<Refugiado>
 
     @DELETE("/refugiado/{username}")

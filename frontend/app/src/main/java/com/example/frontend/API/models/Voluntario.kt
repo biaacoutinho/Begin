@@ -15,6 +15,9 @@ data class Voluntario(
     @SerializedName("idioma")
     val idioma: String,
 
+    @SerializedName("cpf")
+    val cpf: String,
+
     @SerializedName("telefone")
     val telefone: String,
 

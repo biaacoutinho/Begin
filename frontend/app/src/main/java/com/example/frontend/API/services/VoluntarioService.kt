@@ -16,10 +16,10 @@ interface VoluntarioService {
     @GET("/voluntario/{username}")
     fun getVoluntario(@Path("username") username: String): Call<List<Voluntario>>
 
-    @POST("/voluntario")
-    fun postVoluntario(@Body voluntario: Voluntario): Call<Voluntario>
+    @PUT("/voluntario")
+    fun postVoluntario(@Body voluntario: Voluntario?): Call<Voluntario>?
 
-    @PUT("/voluntario/{username}")
+    @POST("/voluntario/{username}")
     fun putVoluntario(username: String, voluntario: Voluntario): Call<Voluntario>
 
     @DELETE("/voluntario/{username}")

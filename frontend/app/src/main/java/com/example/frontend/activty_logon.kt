@@ -28,6 +28,7 @@ class activty_logon : AppCompatActivity() {
         val txtSenha = findViewById<EditText>(R.id.logon_password)
         val txtConfirmSenha = findViewById<EditText>(R.id.logon_confirmePassword)
         val txtCPF = findViewById<EditText>(R.id.logon_cpf)
+        val txtTelefone = findViewById<EditText>(R.id.logon_telefone)
         val txtEmail = findViewById<EditText>(R.id.logon_email)
         val txtIdiomas = findViewById<EditText>(R.id.logon_idiomas)
         val txtHabiliades = findViewById<EditText>(R.id.logon_habilidades)
@@ -44,6 +45,7 @@ class activty_logon : AppCompatActivity() {
             var senha: String = txtSenha.text.toString()
             var confirmeSenha: String = txtConfirmSenha.text.toString()
             var cpf: String = txtCPF.text.toString()
+            var telefone: String = txtTelefone.text.toString()
             var email: String = txtEmail.text.toString()
             var idiomas: String = txtIdiomas.text.toString()
             var habiliades: String = txtHabiliades.text.toString()
@@ -53,42 +55,35 @@ class activty_logon : AppCompatActivity() {
                 if (senha != confirmeSenha)
                     Toast.makeText(this@activty_logon, "As senhas diferem", Toast.LENGTH_LONG).show()
                 else
-                    cadastratVoluntario(username, nome, senha, cpf, email, idiomas, habiliades)
+                    cadastratVoluntario(username, nome, senha, cpf, telefone, email, idiomas, habiliades)
             }
             else
                 Toast.makeText(this@activty_logon, "Preencha todos os campos antes de prosseguir", Toast.LENGTH_LONG).show()
         })
     }
 
-    fun cadastratVoluntario (username: String, nome: String, senha: String, cpf: String, email: String, idiomas: String, habilidade: String){
+    fun cadastratVoluntario (username: String, nome: String, senha: String, cpf: String, telefone: String, email: String, idiomas: String, habilidade: String){
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(VoluntarioService::class.java)
 
-        var newVolun = Voluntario(username, nome, senha, cpf, email,idiomas, habilidade)
-        Log.d("1", "ai vamos nos")
-        Log.d("1.5", newVolun.nome)
+        var newVolun = Voluntario(username, nome, senha, idiomas, cpf, telefone, habilidade, email)
 
-        val callback = service.postVoluntario(newVolun)
-        Log.d("2", "foiii")
+        val callback : Call<Voluntario>? = service.postVoluntario(newVolun)
 
-        callback.enqueue(object : retrofit2.Callback<Voluntario> {
+        callback!!.enqueue(object : retrofit2.Callback<Voluntario> {
             override fun onResponse(
                 call: Call<Voluntario>?,
                 response: Response<Voluntario>?
             ) {
-                if (response!!.isSuccessful) {
-                    Log.d("aaaa", response.body().toString())
-                }
-                else {
-                    val errorMessage = response?.errorBody().toString()
-                    Log.d("5", response.body().toString())
-                    Toast.makeText(this@activty_logon, errorMessage, Toast.LENGTH_LONG).show()
-                }
+                Toast.makeText(this@activty_logon, "Cadastro feito com sucesso", Toast.LENGTH_LONG).show()
+                val intent = Intent(this@activty_logon, InicialVoluntario::class.java)
+                startActivity(intent)
             }
             override fun onFailure(call: Call<Voluntario>?, t: Throwable?) {
                 val messageProblem: String = t?.message.toString()
-                Log.d("4", "erro :(")
-                Toast.makeText(this@activty_logon, messageProblem, Toast.LENGTH_LONG).show()
+                Log.d("erro", messageProblem)
+                val intent = Intent(this@activty_logon, InicialVoluntario::class.java)
+                startActivity(intent)
             }
         })
     }

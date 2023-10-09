@@ -127,6 +127,18 @@
                 android:drawableLeft="@drawable/icon_email"/>
 
             <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/logon_telefone"
+                android:background="@drawable/rounded_input"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:hint ="Telefone/ Celular"
+                android:drawablePadding="8dp"
+                android:textColor="#4A55A2"
+                android:drawableLeft="@drawable/icon_telefone"/>
+
+            <EditText
                 android:id="@+id/logon_idiomas"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
