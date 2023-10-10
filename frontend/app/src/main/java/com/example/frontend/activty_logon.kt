@@ -9,12 +9,11 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.frontend.API.RetrofitClient
-import com.example.frontend.API.models.Refugiado
 import com.example.frontend.API.models.Voluntario
-import com.example.frontend.API.services.RefugiadoService
 import com.example.frontend.API.services.VoluntarioService
 import retrofit2.Call
 import retrofit2.Response
+import com.example.frontend.GlobalUser as GlobalUser
 
 class activty_logon : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,20 +54,23 @@ class activty_logon : AppCompatActivity() {
                 if (senha != confirmeSenha)
                     Toast.makeText(this@activty_logon, "As senhas diferem", Toast.LENGTH_LONG).show()
                 else
-                    cadastratVoluntario(username, nome, senha, cpf, telefone, email, idiomas, habiliades)
+                    cadastrarVoluntario(username, nome, senha, cpf, telefone, email, idiomas, habiliades)
             }
             else
                 Toast.makeText(this@activty_logon, "Preencha todos os campos antes de prosseguir", Toast.LENGTH_LONG).show()
         })
     }
 
-    fun cadastratVoluntario (username: String, nome: String, senha: String, cpf: String, telefone: String, email: String, idiomas: String, habilidade: String){
+    fun cadastrarVoluntario (username: String, nome: String, senha: String, cpf: String, telefone: String, email: String, idiomas: String, habilidade: String){
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(VoluntarioService::class.java)
 
         var newVolun = Voluntario(username, nome, senha, idiomas, cpf, telefone, habilidade, email)
 
         val callback : Call<Voluntario>? = service.postVoluntario(newVolun)
+
+        val gUser = application as GlobalUser
+        gUser.setGlobalVoluntario(newVolun)
 
         callback!!.enqueue(object : retrofit2.Callback<Voluntario> {
             override fun onResponse(

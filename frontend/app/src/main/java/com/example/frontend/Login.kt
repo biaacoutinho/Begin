@@ -70,9 +70,12 @@ class Login : AppCompatActivity() {
                             if (refugiado.username == username) {
                                 if (refugiado.senha == senha)
                                 {
+                                    val gUser = application as GlobalUser
+                                    Log.d("refugiado", refugiado.nome)
+                                    gUser.setGlobalRefugiado(refugiado)
+
                                     Toast.makeText(this@Login, "Login feito com sucesso", Toast.LENGTH_LONG).show()
-                                    val intent = Intent(this@Login, InicialRefugiado::class.java)
-                                    startActivity(intent)
+                                    startActivity(Intent(this@Login, InicialRefugiado::class.java))
                                 }
 
                                 else
@@ -112,12 +115,13 @@ class Login : AppCompatActivity() {
                     val voluntariosList = response.body()
 
                     if (voluntariosList != null) {
-                        for (refugiado in voluntariosList) {
-                            if (refugiado.username == username) {
-                                if (refugiado.senha == senha) {
+                        for (voluntario in voluntariosList) {
+                            if (voluntario.username == username) {
+                                if (voluntario.senha == senha) {
                                     Toast.makeText(this@Login, "Login feito com sucesso", Toast.LENGTH_LONG).show()
-                                    val intent = Intent(this@Login, InicialVoluntario::class.java)
-                                    startActivity(intent)
+                                    val gUser = application as GlobalUser
+                                    gUser.setGlobalVoluntario(voluntario)
+                                    startActivity(Intent(this@Login, InicialVoluntario::class.java))
                                 }
                                 else
                                     Toast.makeText(this@Login, "Senha Incorreta", Toast.LENGTH_LONG).show()
