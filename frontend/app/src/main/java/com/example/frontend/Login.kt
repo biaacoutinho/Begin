@@ -33,8 +33,6 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         })
 
-        Log.d("MinhaTag", "Antes de chamar o serviço Retrofit")
-
         btnLogin.setOnClickListener {
             if (txtUsername.text.toString() != "")
             {

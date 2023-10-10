@@ -25,5 +25,5 @@ data class Voluntario(
     val habilidade: String,
 
     @SerializedName("email")
-    val email: String = ""
+    val email: String? = null
 )

@@ -16,11 +16,11 @@ data class Refugiado (
     val idioma: String,
 
     @SerializedName("paisDeOrigem")
-    val paisOrigem: String = "",
+    val paisOrigem: String? = null,
 
     @SerializedName("telefone")
-    val telefone: String = "",
+    val telefone: String? = null,
 
     @SerializedName("email")
-    val email: String = ""
+    val email: String? = null
     )

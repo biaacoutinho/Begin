@@ -73,16 +73,13 @@ class CadastroRefugiado : AppCompatActivity() {
                 call: Call<Refugiado>?,
                 response: Response<Refugiado>?
             ) {
-                Log.d("aaaa","foiii")
                 Toast.makeText(this@CadastroRefugiado, "Cadastro feito com sucesso", Toast.LENGTH_LONG).show()
-                val intent = Intent(this@CadastroRefugiado, InicialVoluntario::class.java)
-                startActivity(intent)
+                startActivity(Intent(this@CadastroRefugiado, InicialRefugiado::class.java))
             }
             override fun onFailure(call: Call<Refugiado>?, t: Throwable?) {
                 val messageProblem: String = t?.message.toString()
                 Log.d("erro", messageProblem)
-                val intent = Intent(this@CadastroRefugiado, InicialVoluntario::class.java)
-                startActivity(intent)
+                startActivity(Intent(this@CadastroRefugiado, InicialRefugiado::class.java))
             }
         })
     }
