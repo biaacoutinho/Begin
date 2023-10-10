@@ -7,7 +7,9 @@
     android:layout_gravity="center_horizontal"
     android:background="#F1F0E8"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-30dp">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -28,8 +30,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="524dp"
         android:gravity="center"
         android:text="Cadastro de Refugiado"
         android:textAlignment="center"
@@ -56,13 +59,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.337" />
+        app:layout_constraintVertical_bias="0.273" />
+
 
     <EditText
         android:id="@+id/cadastro_NomeRef"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="360dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="384dp"
         android:background="@drawable/rounded_input"
         android:drawableLeft="@drawable/name_icon"
         android:drawablePadding="8dp"
@@ -71,12 +76,16 @@
         android:textColor="#4A55A2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"  />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_usernameRef"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/cadastro_IdiomasRef"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="320dp"
         android:background="@drawable/rounded_input"
         android:drawableLeft="@drawable/icon_idioma"
         android:drawablePadding="8dp"
@@ -86,15 +95,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.531" />
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_NomeRef"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/cadastro_senhaRef"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginTop="7dp"
         android:background="@drawable/rounded_input"
         android:drawableLeft="@drawable/password_icon"
         android:drawablePadding="8dp"
@@ -102,19 +110,16 @@
         android:inputType="textPassword"
         android:padding="8dp"
         android:textColor="#4A55A2"
-        app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_username"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_IdiomasRef" />
 
     <EditText
         android:id="@+id/cadastro_confSenhaRef"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/rounded_input"
         android:drawableLeft="@drawable/password_icon"
         android:drawablePadding="8dp"
@@ -122,11 +127,59 @@
         android:inputType="textPassword"
         android:padding="8dp"
         android:textColor="#4A55A2"
-        app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_username"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_senhaRef" />
+
+    <EditText
+        android:id="@+id/cadastro_paisOrigem"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rounded_input"
+        android:drawableLeft="@drawable/icon_mundo"
+        android:drawablePadding="8dp"
+        android:hint="País de origem"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:textColor="#4A55A2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_confSenhaRef" />
+
+    <EditText
+        android:id="@+id/cadastro_telefone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/rounded_input"
+        android:drawableLeft="@drawable/icon_telefone"
+        android:drawablePadding="8dp"
+        android:hint="Telefone/ celular"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:textColor="#4A55A2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_paisOrigem" />
+
+    <EditText
+        android:id="@+id/cadastro_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/rounded_input"
+        android:drawableLeft="@drawable/icon_email"
+        android:drawablePadding="8dp"
+        android:hint="Email"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:textColor="#4A55A2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_telefone" />
 
     <Button
         android:id="@+id/login_button"
@@ -141,9 +194,10 @@
         app:cornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" />
+        app:layout_constraintVertical_bias="0.972" />
 
     <TextView
         android:id="@+id/tvCadastrar"
@@ -151,15 +205,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="40dp"
+        android:layout_marginTop="50dp"
         android:padding="6dp"
         android:text="Já possui conta? Conecte-se"
         android:textColor="#4A55A2"
         android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_email" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

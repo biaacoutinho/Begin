@@ -29,7 +29,7 @@ class Login : AppCompatActivity() {
         val txtSenha = findViewById<EditText>(R.id.login_password)
 
         tvCadastrar.setOnClickListener({
-            val intent = Intent(this, activty_logon::class.java)
+            val intent = Intent(this, CadastroRefugiado::class.java)
             startActivity(intent)
         })
 
