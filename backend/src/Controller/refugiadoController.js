@@ -14,7 +14,7 @@ exports.getRefugiados = ('/refugiados', async(req, res) => {
 
 exports.getRefugiado = ('/refugiado/:username', async(req, res) => {
   const username = req.params.username;
-  console.log(username)
+
   try {
     const { data, error } = await db.from('Refugiado').select('*').eq('username', username);
     if (error) {
