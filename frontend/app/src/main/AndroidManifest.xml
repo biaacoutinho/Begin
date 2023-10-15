@@ -62,6 +62,9 @@
         <activity
             android:name=".activty_logon">
         </activity>
+        <activity
+            android:name=".PerfilVoluntario">
+        </activity>
     </application>
 
 </manifest>
