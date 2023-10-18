@@ -5,26 +5,29 @@ import com.example.frontend.API.models.Refugiado
 import com.example.frontend.API.models.Voluntario
 
 class GlobalUser: Application() {
-    public lateinit var voluntario : Voluntario;
-    public lateinit var refugiado : Refugiado;
+    public var voluntario: Voluntario? = null
+    public var refugiado : Refugiado? = null
 
     fun getGlobalVoluntario(): Voluntario? {
-        if (this::voluntario.isInitialized)
+        if (this.voluntario != null)
             return voluntario
         else
             return null
     }
-    fun setGlobalVoluntario(volun: Voluntario) {
-        voluntario = volun
+    fun setGlobalVoluntario(volun: Voluntario?) {
+        if(volun != null)
+            voluntario = volun
+        else
+            voluntario = null
     }
 
     fun getGlobalRefugiado(): Refugiado? {
-        if (this::refugiado.isInitialized)
+        if (this.refugiado != null)
             return refugiado
         else
             return null
     }
-    fun setGlobalRefugiado(ref: Refugiado) {
+    fun setGlobalRefugiado(ref: Refugiado?) {
         refugiado = ref
     }
 }

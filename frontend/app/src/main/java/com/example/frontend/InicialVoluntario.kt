@@ -30,5 +30,6 @@ class InicialVoluntario : AppCompatActivity() {
             startActivity(intent)
         }
 
+
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.frontend.API.models.Voluntario
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class PerfilVoluntario: AppCompatActivity() {
@@ -13,6 +14,7 @@ class PerfilVoluntario: AppCompatActivity() {
 
         val btnVoltar = findViewById<TextView>(R.id.btnVoltar)
         val btnSolicitao = findViewById<FloatingActionButton>(R.id.btnNotificacao)
+        val btnDeslogin = findViewById<TextView>(R.id.btLogOut)
 
         btnVoltar.setOnClickListener(){
             startActivity(Intent(this, InicialVoluntario::class.java))
@@ -20,6 +22,16 @@ class PerfilVoluntario: AppCompatActivity() {
 
         btnSolicitao.setOnClickListener(){
             startActivity(Intent(this, SolicitacaoRefugiado::class.java))
+        }
+
+        btnDeslogin.setOnClickListener(){
+            val gUser = application as GlobalUser
+            gUser.setGlobalVoluntario(null)
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
         }
 
         val tvNome = findViewById<TextView>(R.id.tvNomeVol)
@@ -42,5 +54,6 @@ class PerfilVoluntario: AppCompatActivity() {
             tvEmail.text = user?.email
         else
             tvEmail.text = "Nenhum email foi cadastrado"
+
     }
 }

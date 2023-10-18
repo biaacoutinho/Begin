@@ -181,6 +181,7 @@
                 app:layout_constraintVertical_bias="0.027"
                 app:srcCompat="@drawable/icon_deslike" />
         </LinearLayout>
+
     </LinearLayout>
 
     <ScrollView
@@ -303,5 +304,17 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="43dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="260dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sesaoCabecalho"
+        android:backgroundTint="#EDD8B6"
+        android:src="@drawable/icon_edit"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
