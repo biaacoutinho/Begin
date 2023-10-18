@@ -177,12 +177,8 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="20dp"
-                    android:src="@drawable/casaicon" />
+                    android:src="@drawable/solicitacao_icon" />
             </LinearLayout>
-
-
-
-
         </LinearLayout>
     </ScrollView>
 

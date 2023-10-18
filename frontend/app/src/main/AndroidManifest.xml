@@ -65,6 +65,15 @@
         <activity
             android:name=".PerfilVoluntario">
         </activity>
+        <activity
+            android:name=".SolicitacaoRefugiado">
+        </activity>
+        <activity
+            android:name=".ConexoesVoluntario">
+        </activity>
+        <activity
+            android:name=".Doacao">
+        </activity>
     </application>
 
 </manifest>
