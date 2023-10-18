@@ -12,9 +12,14 @@ class PerfilVoluntario: AppCompatActivity() {
         setContentView(R.layout.activity_perfil_voluntario)
 
         val btnVoltar = findViewById<TextView>(R.id.btnVoltar)
+        val btnSolicitao = findViewById<FloatingActionButton>(R.id.btnNotificacao)
 
         btnVoltar.setOnClickListener(){
             startActivity(Intent(this, InicialVoluntario::class.java))
+        }
+
+        btnSolicitao.setOnClickListener(){
+            startActivity(Intent(this, SolicitacaoRefugiado::class.java))
         }
 
         val tvNome = findViewById<TextView>(R.id.tvNomeVol)
