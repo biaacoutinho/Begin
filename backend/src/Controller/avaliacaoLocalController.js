@@ -1,8 +1,8 @@
 const db = require('../db')
 
-exports.getAvaliacoes = ('/avaliacoes', async(req, res) => {
+exports.getAvaliacoesLocal = ('/avaliacoesLocal', async(req, res) => {
     try {
-      const { data, error } = await db.from('Avaliacao').select('*');
+      const { data, error } = await db.from('AvaliacaoLocal').select('*');
       if (error) {
         throw error;
       }
@@ -12,11 +12,11 @@ exports.getAvaliacoes = ('/avaliacoes', async(req, res) => {
     }
   });
 
-exports.getAvaliacao = ('/avaliacao/:local', async(req, res) => {
+exports.getAvaliacaoLocal = ('/avaliacaoLocal/:local', async(req, res) => {
     const local = req.params.local;
 
     try {
-        const { data, error } = await db.from('Avaliacao').select('*').eq('local', local);
+        const { data, error } = await db.from('AvaliacaoLocal').select('*').eq('local', local);
         if (error) {
         throw error;
         }
@@ -26,11 +26,11 @@ exports.getAvaliacao = ('/avaliacao/:local', async(req, res) => {
     }
 })
 
-exports.getAvaliacaoByUser = ('/avaliacao/:username', async(req, res) => {
+exports.getAvaliacaoByUser = ('/avaliacaoLocal/:username', async(req, res) => {
     const username = req.params.username;
 
     try {
-        const { data, error } = await db.from('Avaliacao').select('*').eq('username', username);
+        const { data, error } = await db.from('AvaliacaoLocal').select('*').eq('username', username);
         if (error) {
         throw error;
         }
@@ -40,14 +40,14 @@ exports.getAvaliacaoByUser = ('/avaliacao/:username', async(req, res) => {
     }
 })
 
-exports.putAvaliacao = ('/avaliacao', async(req, res) => {
+exports.putAvaliacaoLocal = ('/avaliacaoLocal', async(req, res) => {
     const username = req.body.username;
     const local = req.body.local;
     const avaliacao = req.body.avaliacao;
   
     try {
       const { data, error } = await db
-        .from('Avaliacao')
+        .from('AvaliacaoLocal')
         .insert([
           { username: username, local: local, avaliacao: avaliacao },
         ])
@@ -62,13 +62,13 @@ exports.putAvaliacao = ('/avaliacao', async(req, res) => {
     }
 });
 
-exports.postAvaliacao = ('/avaliacao/:id', async(req, res) => {
+exports.postAvaliacaoLocal = ('/avaliacaoLocal/:id', async(req, res) => {
     const id = req.params.id;
-    const avaliacao = req.body.avaliacao;
+    const avaliacao = req.body.avaliacaoLocal;
   
     try {
       const { data, error } = await db
-        .from('Avaliacao')
+        .from('AvaliacaoLocal')
         .update({ avaliacao: avaliacao })
         .eq('id', id)
         .select()
@@ -82,12 +82,12 @@ exports.postAvaliacao = ('/avaliacao/:id', async(req, res) => {
     }
 });
 
-exports.deleteAvaliacao = ('/avaliacao/:id', async(req, res) => {
+exports.deleteAvaliacaoLocal = ('/avaliacaoLocal/:id', async(req, res) => {
     const id = req.params.id; 
   
     try {
       const { data, error } = await db
-        .from('Avaliacao')
+        .from('AvaliacaoLocal')
         .delete()
         .eq('id', id)
         .select()
