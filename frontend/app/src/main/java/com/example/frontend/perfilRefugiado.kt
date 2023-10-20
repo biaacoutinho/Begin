@@ -28,6 +28,7 @@ class perfilRefugiado : AppCompatActivity() {
         val tvTelefone = findViewById<TextView>(R.id.tvTelefone)
         val tvEmail = findViewById<TextView>(R.id.tvEmail)
         val btnDeslogin = findViewById<FloatingActionButton>(R.id.btLogOut)
+        val btnEditRef = findViewById<FloatingActionButton>(R.id.btnEditarRefugiado)
         imgPerfil = findViewById<ShapeableImageView>(R.id.imgPerfilRefugiado)
 
         val gUser = application as GlobalUser
@@ -41,6 +42,10 @@ class perfilRefugiado : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
+        }
+
+        btnEditRef.setOnClickListener(){
+            startActivity(Intent(this, EditarPerfilRefugiado::class.java))
         }
 
         imgPerfil.setOnClickListener(){
