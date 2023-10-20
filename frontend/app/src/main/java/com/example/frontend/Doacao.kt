@@ -11,13 +11,19 @@ class Doacao : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pagina_ongs)
-        val url : String? = "https://doar.acnur.org/page/ACNURBR/doe/general?gad_source=1&gclid=CjwKCAjwysipBhBXEiwApJOcux0-SXxnmgn4IzHNW3rOGtBJ4fqxw41tkjKUTHuoQ9vKYuFR82c4OBoCAlQQAvD_BwE&gclsrc=aw.ds"
+        val urlOnu : String? = "https://doar.acnur.org/page/ACNURBR/doe/general"
+        val urlMissaoPaz : String? = "https://missaonspaz.org/doar/"
+        val urlAfricaCoracao : String? = "https://sedoar.com.br/entidades/pdmig-africa-do-coracao"
+        val urlMulherImigrante : String? = "https://www.mulherimigrante.org/"
 
         val ondeVeio: String? = intent.getStringExtra("ondeVeio");
 
         val btnPerfil = findViewById<FloatingActionButton>(R.id.btnPerfilDoacao)
 
         val ongOnu = findViewById<LinearLayout>(R.id.ong1)
+        val ongMissaoPaz = findViewById<LinearLayout>(R.id.ong2)
+        val ongAfricaCoracao = findViewById<LinearLayout>(R.id.ong3)
+        val ongMulherImigrante = findViewById<LinearLayout>(R.id.ong4)
 
         btnPerfil.setOnClickListener(){
             if (ondeVeio == "voluntario")
@@ -28,7 +34,25 @@ class Doacao : AppCompatActivity() {
 
         ongOnu.setOnClickListener(){
             val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
+            i.data = Uri.parse(urlOnu)
+            startActivity(i)
+        }
+
+        ongMissaoPaz.setOnClickListener(){
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(urlMissaoPaz)
+            startActivity(i)
+        }
+
+        ongAfricaCoracao.setOnClickListener(){
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(urlAfricaCoracao)
+            startActivity(i)
+        }
+
+        ongMulherImigrante.setOnClickListener(){
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(urlMulherImigrante)
             startActivity(i)
         }
     }

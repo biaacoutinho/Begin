@@ -56,22 +56,17 @@
         app:srcCompat="@drawable/username_icon"
         android:contentDescription="NULL" />
 
-    <EditText
-        android:id="@+id/search_bar"
-        android:layout_width="370dp"
+    <SearchView
+        android:id="@+id/searchBar"
+        android:layout_width="360dp"
         android:layout_height="50dp"
+        android:layout_marginTop="92dp"
         android:background="@drawable/rounded_input"
-        android:drawableLeft="@drawable/search_icon"
-        android:drawablePadding="8dp"
         android:hint="Search.."
-        android:padding="8dp"
-        android:textColor="#4A55A2"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.139" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
