@@ -73,26 +73,25 @@ class EditarPerfilVoluntario : AppCompatActivity() {
 
         var newVolun = Voluntario(user!!.username, user.nome, user.senha, idioma, cpf, telefone, habilidade, email)
 
-        val callback : Call<Voluntario>? = service.putVoluntario(user.username, newVolun)
+        val callback : Call<List<Voluntario>>? = service.putVoluntario(user.username, newVolun)
 
         val gUser = application as GlobalUser
         gUser.setGlobalVoluntario(newVolun)
 
-        callback!!.enqueue(object : retrofit2.Callback<Voluntario> {
+        callback!!.enqueue(object : retrofit2.Callback<List<Voluntario>> {
             override fun onResponse(
-                call: Call<Voluntario>?,
-                response: Response<Voluntario>?
+                call: Call<List<Voluntario>>,
+                response: Response<List<Voluntario>>?
             ) {
                 println(response?.body().toString())
                 Toast.makeText(this@EditarPerfilVoluntario, "Edições feitas com sucesso", Toast.LENGTH_LONG).show()
                 val intent = Intent(this@EditarPerfilVoluntario, InicialVoluntario::class.java)
                 startActivity(intent)
             }
-            override fun onFailure(call: Call<Voluntario>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<Voluntario>>?, t: Throwable?) {
                 println(call.toString())
                 val messageProblem: String = t?.message.toString()
                 Toast.makeText(this@EditarPerfilVoluntario, messageProblem, Toast.LENGTH_LONG).show()
-                val intent = Intent(this@EditarPerfilVoluntario, InicialVoluntario::class.java)
                 startActivity(intent)
             }
         })
