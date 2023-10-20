@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.imageview.ShapeableImageView
 import java.io.IOException
 
 class perfilRefugiado : AppCompatActivity() {
@@ -27,7 +28,7 @@ class perfilRefugiado : AppCompatActivity() {
         val tvTelefone = findViewById<TextView>(R.id.tvTelefone)
         val tvEmail = findViewById<TextView>(R.id.tvEmail)
         val btnDeslogin = findViewById<FloatingActionButton>(R.id.btLogOut)
-        imgPerfil = findViewById<ImageView>(R.id.imgPerfilRefugiado)
+        imgPerfil = findViewById<ShapeableImageView>(R.id.imgPerfilRefugiado)
 
         val gUser = application as GlobalUser
         val user = gUser.getGlobalRefugiado()
@@ -94,6 +95,7 @@ class perfilRefugiado : AppCompatActivity() {
                         selectedImageUri
                     )
 
+                    imgPerfil.clipToOutline = true
                     imgPerfil.setImageBitmap(
                         selectedImageBitmap
                     )
