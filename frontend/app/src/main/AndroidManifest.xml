@@ -74,6 +74,9 @@
         <activity
             android:name=".Doacao">
         </activity>
+        <activity
+            android:name=".EditarPerfilVoluntario">
+        </activity>
     </application>
 
 </manifest>

@@ -295,10 +295,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
                 android:text="rajalvez@outlook.com"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:layout_marginBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -306,15 +306,21 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="43dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="270dp"
-        android:layout_marginTop="260dp"
-        android:clickable="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sesaoCabecalho"
+        android:id="@+id/btnEditarVolun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="350dp"
         android:backgroundTint="#EDD8B6"
-        android:src="@drawable/icon_edit"/>
+        android:clickable="true"
+        android:contentDescription="Botão para editar perfil"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintStart_toEndOf="@+id/btnNotificacao"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/icon_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

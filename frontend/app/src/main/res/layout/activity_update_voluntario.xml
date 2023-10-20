@@ -52,7 +52,7 @@
                 app:layout_constraintVertical_bias="0.051" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btLogOut"
+                android:id="@+id/btnSalvarAlteracao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -168,7 +168,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <EditText
-                    android:id="@+id/update_pais"
+                    android:id="@+id/update_habilidade"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
                     android:background="@drawable/rounded_input"
