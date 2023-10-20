@@ -9,16 +9,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.frontend.API.RetrofitClient
+import com.example.frontend.API.models.Refugiado
 import com.example.frontend.API.models.Voluntario
+import com.example.frontend.API.services.RefugiadoService
 import com.example.frontend.API.services.VoluntarioService
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Response
+import java.sql.Ref
 
-class EditarPerfilVoluntario : AppCompatActivity() {
+class EditarPerfilRefugiado : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_update_voluntario)
+        setContentView(R.layout.activity_update_refugiado)
 
         val btnSalvarAlteracao = findViewById<FloatingActionButton>(R.id.btnSalvarAlteracao)
         val btnSair = findViewById<FloatingActionButton>(R.id.btnVoltar)
@@ -26,20 +29,18 @@ class EditarPerfilVoluntario : AppCompatActivity() {
         val tvNome = findViewById<TextView>(R.id.tvNome)
         val tvUsername = findViewById<TextView>(R.id.tvUsername)
         val txtIdiomas = findViewById<EditText>(R.id.update_idioma)
-        val txtHabilidade = findViewById<EditText>(R.id.update_habilidade)
+        val txtPais = findViewById<EditText>(R.id.update_pais)
         val txtTelefone = findViewById<EditText>(R.id.update_telefone)
-        val txtCPF = findViewById<EditText>(R.id.update_cpf)
         val txtEmail = findViewById<EditText>(R.id.update_email)
 
         val gUser = application as GlobalUser
-        val user = gUser.getGlobalVoluntario()
+        val user = gUser.getGlobalRefugiado()
 
         tvNome.text = user?.nome
         tvUsername.text = "@" + user?.username
         txtIdiomas.setText(user?.idioma)
-        txtHabilidade.setText(user?.habilidade)
+        txtPais.setText(user?.paisOrigem)
         txtTelefone.setText(user?.telefone)
-        txtCPF.setText(user?.cpf)
 
         if (user?.email != null)
             txtEmail.setText(user?.email)
@@ -47,11 +48,11 @@ class EditarPerfilVoluntario : AppCompatActivity() {
             txtEmail.setText("Nenhum email foi cadastrado")
 
         btnSair.setOnClickListener(){
-            val builder = AlertDialog.Builder(this@EditarPerfilVoluntario)
+            val builder = AlertDialog.Builder(this@EditarPerfilRefugiado)
             builder.setMessage("Tem certeza que deseja voltar? \nLembre-se que as alterações nao serão salvas!")
                 .setCancelable(false)
                 .setPositiveButton("Sim") { dialog, id ->
-                    startActivity(Intent(this, PerfilVoluntario::class.java))
+                    startActivity(Intent(this, perfilRefugiado::class.java))
                 }
                 .setNegativeButton("Não") { dialog, id ->
                     dialog.dismiss()
@@ -62,35 +63,34 @@ class EditarPerfilVoluntario : AppCompatActivity() {
 
 
         btnSalvarAlteracao.setOnClickListener() {
-            salvarAlteracoes(user, txtCPF.text.toString(), txtIdiomas.text.toString(), txtHabilidade.text.toString(), txtTelefone.text.toString(), txtEmail.text.toString())
+            salvarAlteracoes(user, txtIdiomas.text.toString(), txtPais.text.toString(), txtTelefone.text.toString(), txtEmail.text.toString())
         }
     }
 
-    fun salvarAlteracoes(user: Voluntario?, cpf: String, idioma: String, habilidade: String, telefone: String, email: String){
+    fun salvarAlteracoes(user: Refugiado?, idioma: String, pais: String, telefone: String, email: String){
         val retrofitClient = RetrofitClient.getRetrofit()
-        val service = retrofitClient.create(VoluntarioService::class.java)
+        val service = retrofitClient.create(RefugiadoService::class.java)
 
-        var newVolun = Voluntario(user!!.username, user.nome, user.senha, idioma, cpf, telefone, habilidade, email)
+        var newRef = Refugiado(user!!.username, user.nome, user.senha, idioma, telefone, pais, email)
 
-        val callback : Call<List<Voluntario>>? = service.putVoluntario(user.username, newVolun)
+        val callback : Call<List<Refugiado>>? = service.putRefugido(user.username, newRef)
 
         val gUser = application as GlobalUser
-        gUser.setGlobalVoluntario(newVolun)
+        gUser.setGlobalRefugiado(newRef)
 
-        callback!!.enqueue(object : retrofit2.Callback<List<Voluntario>> {
+        callback!!.enqueue(object : retrofit2.Callback<List<Refugiado>> {
             override fun onResponse(
-                call: Call<List<Voluntario>>,
-                response: Response<List<Voluntario>>?
+                call: Call<List<Refugiado>>,
+                response: Response<List<Refugiado>>?
             ) {
-                Toast.makeText(this@EditarPerfilVoluntario, "Edições feitas com sucesso", Toast.LENGTH_LONG).show()
-                val intent = Intent(this@EditarPerfilVoluntario, PerfilVoluntario::class.java)
+                Toast.makeText(this@EditarPerfilRefugiado, "Edições feitas com sucesso", Toast.LENGTH_LONG).show()
+                val intent = Intent(this@EditarPerfilRefugiado, perfilRefugiado::class.java)
                 startActivity(intent)
             }
-            override fun onFailure(call: Call<List<Voluntario>>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<Refugiado>>?, t: Throwable?) {
                 val messageProblem: String = t?.message.toString()
                 Log.d("erro", messageProblem)
-                Toast.makeText(this@EditarPerfilVoluntario, "Ocorreu um erro ao salvar as edições", Toast.LENGTH_LONG).show()
-                startActivity(intent)
+                Toast.makeText(this@EditarPerfilRefugiado, "Ocorreu um erro ao salvar as edições", Toast.LENGTH_LONG).show()
             }
         })
     }
