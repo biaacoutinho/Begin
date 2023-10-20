@@ -18,10 +18,10 @@ interface RefugiadoService {
     fun getRefugiado(@Path("username") username: String): Call<List<Refugiado>>
 
     @PUT("/refugiado")
-    fun postRefugiado(@Body refugiado: Refugiado): Call<Refugiado>
+    fun postRefugiado(@Body refugiado: Refugiado): Call<List<Refugiado>>
 
     @POST("/refugiado/{username}")
-    fun putRefugido(username: String, refugiado: Refugiado): Call<Refugiado>
+    fun putRefugido(username: String, refugiado: Refugiado): Call<List<Refugiado>>
 
     @DELETE("/refugiado/{username}")
     fun deleteRefugiado(username: String): Call<Refugiado>
