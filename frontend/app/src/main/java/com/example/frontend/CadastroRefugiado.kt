@@ -63,23 +63,23 @@ class CadastroRefugiado : AppCompatActivity() {
 
         var newRef = Refugiado(username, nome, senha, idioma, paisDeOrigem, telefone, email)
 
-        val callback : Call<Refugiado>? = service.postRefugiado(newRef)
+        val callback : Call<List<Refugiado>> = service.postRefugiado(newRef)
 
         val gUser = application as GlobalUser
         gUser.setGlobalRefugiado(newRef)
 
-        callback!!.enqueue(object : retrofit2.Callback<Refugiado> {
+        callback!!.enqueue(object : retrofit2.Callback<List<Refugiado>> {
             override fun onResponse(
-                call: Call<Refugiado>?,
-                response: Response<Refugiado>?
+                call: Call<List<Refugiado>>?,
+                response: Response<List<Refugiado>>?
             ) {
                 Toast.makeText(this@CadastroRefugiado, "Cadastro feito com sucesso", Toast.LENGTH_LONG).show()
                 startActivity(Intent(this@CadastroRefugiado, InicialRefugiado::class.java))
             }
-            override fun onFailure(call: Call<Refugiado>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<Refugiado>>?, t: Throwable?) {
                 val messageProblem: String = t?.message.toString()
                 Log.d("erro", messageProblem)
-                startActivity(Intent(this@CadastroRefugiado, InicialRefugiado::class.java))
+                Toast.makeText(this@CadastroRefugiado, "Não foi possível cadastrar", Toast.LENGTH_LONG).show()
             }
         })
     }

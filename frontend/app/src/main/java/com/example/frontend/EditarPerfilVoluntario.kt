@@ -83,15 +83,12 @@ class EditarPerfilVoluntario : AppCompatActivity() {
                 call: Call<List<Voluntario>>,
                 response: Response<List<Voluntario>>?
             ) {
-                println(response?.body().toString())
                 Toast.makeText(this@EditarPerfilVoluntario, "Edições feitas com sucesso", Toast.LENGTH_LONG).show()
                 val intent = Intent(this@EditarPerfilVoluntario, InicialVoluntario::class.java)
                 startActivity(intent)
             }
             override fun onFailure(call: Call<List<Voluntario>>?, t: Throwable?) {
-                println(call.toString())
-                val messageProblem: String = t?.message.toString()
-                Toast.makeText(this@EditarPerfilVoluntario, messageProblem, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@EditarPerfilVoluntario, "Ocorreu um erro ao salvar as edições", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }
         })

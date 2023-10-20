@@ -67,25 +67,24 @@ class activty_logon : AppCompatActivity() {
 
         var newVolun = Voluntario(username, nome, senha, idiomas, cpf, telefone, habilidade, email)
 
-        val callback : Call<Voluntario>? = service.postVoluntario(newVolun)
+        val callback : Call<List<Voluntario>>? = service.postVoluntario(newVolun)
 
         val gUser = application as GlobalUser
         gUser.setGlobalVoluntario(newVolun)
 
-        callback!!.enqueue(object : retrofit2.Callback<Voluntario> {
+        callback!!.enqueue(object : retrofit2.Callback<List<Voluntario>> {
             override fun onResponse(
-                call: Call<Voluntario>?,
-                response: Response<Voluntario>?
+                call: Call<List<Voluntario>>?,
+                response: Response<List<Voluntario>>?
             ) {
                 Toast.makeText(this@activty_logon, "Cadastro feito com sucesso", Toast.LENGTH_LONG).show()
                 val intent = Intent(this@activty_logon, InicialVoluntario::class.java)
                 startActivity(intent)
             }
-            override fun onFailure(call: Call<Voluntario>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<Voluntario>>?, t: Throwable?) {
                 val messageProblem: String = t?.message.toString()
                 Log.d("erro", messageProblem)
-                val intent = Intent(this@activty_logon, InicialVoluntario::class.java)
-                startActivity(intent)
+                Toast.makeText(this@activty_logon, "Não foi possível cadastrar", Toast.LENGTH_LONG).show()
             }
         })
     }
