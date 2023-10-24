@@ -6,6 +6,7 @@ const ctrVolun = require('./Controller/voluntarioController')
 const ctrCon = require('./Controller/conexaoController')
 const crtAvLocal = require('./Controller/avaliacaoLocalController')
 const crtAvVolun = require('./Controller/avaliacaoVoluntarioController')
+const ctrProfPicture = require('./Controller/profilePictureController')
 
 router.get('/refugiados', ctrRef.getRefugiados)
 router.get('/refugiado/:username', ctrRef.getRefugiado)
@@ -35,5 +36,7 @@ router.get('/avaliacaoVoluntario/:role/:username', crtAvVolun.getAvaliacaoVolunt
 router.put('/avaliacaoVoluntario', crtAvVolun.putAvaliacaoVoluntario)
 router.post('/avaliacaoVoluntario/:id', crtAvVolun.postAvaliacaoVoluntario)
 router.delete('/avaliacaoVoluntario/:usernameRef/:usernameVolun', crtAvVolun.deleteAvaliacaoVoluntario)
+
+router.put('/upload/:username', ctrProfPicture.postPicture)
 
 module.exports = router
