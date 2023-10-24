@@ -1,21 +1,36 @@
 package com.example.frontend
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Base64
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.frontend.API.RetrofitClient
+import com.example.frontend.API.models.Refugiado
+import com.example.frontend.API.services.ProfilePictureService
+import com.example.frontend.API.services.RefugiadoService
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.imageview.ShapeableImageView
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 
 class perfilRefugiado : AppCompatActivity() {
     lateinit var imgPerfil : ImageView
+    lateinit var user: Refugiado
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,6 +115,8 @@ class perfilRefugiado : AppCompatActivity() {
                         selectedImageUri
                     )
 
+                    val file = bitmapToFile(this, selectedImageBitmap)
+                    salvarImagem(file!!)
                     imgPerfil.clipToOutline = true
                     imgPerfil.setImageBitmap(
                         selectedImageBitmap
@@ -109,5 +126,55 @@ class perfilRefugiado : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun bitmapToFile(context: Context, bitmap: Bitmap): File? {
+        Log.d("aaaa3", "foi3")
+
+        val file = File(context.cacheDir, user.username + ".png") // Use cacheDir ou outro diretório adequado
+
+        Log.d("aaaa4", "foi4")
+
+        try {
+            val stream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream) // Escolha o formato e qualidade desejados
+            Log.d("aaaa5", "foi5")
+
+            stream.flush()
+            stream.close()
+            return file
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return null
+        }
+    }
+
+    fun salvarImagem(file: File) {
+        val retrofitClient = RetrofitClient.getRetrofit()
+        val service = retrofitClient.create(ProfilePictureService::class.java)
+        Log.d("aaaa1", "foi1")
+        val callback: Call<ResponseBody> = service.uploadPicture(user.username, file)
+        Log.d("aaaa2", "foi2")
+
+        callback!!.enqueue(object : retrofit2.Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+                if (response?.isSuccessful == true) {
+                    Toast.makeText(
+                        this@perfilRefugiado,
+                        "Cadastro feito com sucesso",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    // Lidar com a resposta sem sucesso aqui
+                    val errorBody = response?.errorBody()?.string()
+                    Log.d("erro", "Erro na resposta: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+                val messageProblem: String = t?.message.toString()
+                Log.d("erro", messageProblem)
+            }
+        })
     }
 }

@@ -4,7 +4,7 @@ const path = require('path'); // Importe o módulo 'path'
 
 exports.postPicture = ('/upload/:username', async (req, res) => {
     try {
-        //const username = req.params.username;
+        const username = req.params.username;
         // Use __dirname para obter o diretório atual do seu arquivo JavaScript
         //const currentDir = __dirname;
 
