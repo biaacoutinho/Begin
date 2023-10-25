@@ -130,17 +130,26 @@ class perfilRefugiado : AppCompatActivity() {
 
     // Função para converter uma imagem em Base64
     fun bitmapToBase64(bitmap: Bitmap): String {
+        // Reduza a resolução da imagem
+        val newWidth = 20 // Largura desejada
+        val newHeight = 10 // Altura desejada
+        val scaledBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false)
+
+        // Comprima o Bitmap
         val byteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+        scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 2, byteArrayOutputStream)
         val byteArray = byteArrayOutputStream.toByteArray()
+
+        // Converta em Base64
         return Base64.encodeToString(byteArray, Base64.DEFAULT)
     }
+
 
     // Função para enviar a imagem para a API
     fun uploadImageToAPI(base64Image: String) {
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(ProfilePictureService::class.java)
-
+        Log.d("aaa", base64Image)
         val callback: Call<ResponseBody> = service.uploadPicture("Rajah", base64Image)
 
         callback.enqueue(object : retrofit2.Callback<ResponseBody> {
