@@ -17,7 +17,7 @@ class InicialVoluntario : AppCompatActivity() {
         val btnDoacao = findViewById<LinearLayout>(R.id.secaoDoacao)
 
         btnPerfil.setOnClickListener(){
-            startActivity(Intent(this, PerfilVoluntario::class.java))
+            startActivity(Intent(this, ConexaoVol::class.java))
         }
 
         btnSolicitacao.setOnClickListener(){
