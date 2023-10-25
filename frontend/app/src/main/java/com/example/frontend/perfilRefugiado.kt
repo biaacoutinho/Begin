@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.frontend.API.RetrofitClient
+import com.example.frontend.API.models.ProfilePicture
 import com.example.frontend.API.models.Refugiado
 import com.example.frontend.API.services.ProfilePictureService
 import com.example.frontend.API.services.RefugiadoService
@@ -42,7 +43,7 @@ class perfilRefugiado : AppCompatActivity() {
         val tvPais = findViewById<TextView>(R.id.tvPais)
         val tvTelefone = findViewById<TextView>(R.id.tvTelefone)
         val tvEmail = findViewById<TextView>(R.id.tvEmail)
-        val btnDeslogin = findViewById<FloatingActionButton>(R.id.btLogOut)
+        val btnDeslogin = findViewById<TextView>(R.id.btLogOut)
         val btnEditRef = findViewById<FloatingActionButton>(R.id.btnEditarRefugiado)
         imgPerfil = findViewById<ShapeableImageView>(R.id.imgPerfilRefugiado)
 
@@ -130,14 +131,9 @@ class perfilRefugiado : AppCompatActivity() {
 
     // Função para converter uma imagem em Base64
     fun bitmapToBase64(bitmap: Bitmap): String {
-        // Reduza a resolução da imagem
-        val newWidth = 20 // Largura desejada
-        val newHeight = 10 // Altura desejada
-        val scaledBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false)
-
         // Comprima o Bitmap
         val byteArrayOutputStream = ByteArrayOutputStream()
-        scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 2, byteArrayOutputStream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 76, byteArrayOutputStream)
         val byteArray = byteArrayOutputStream.toByteArray()
 
         // Converta em Base64
@@ -145,12 +141,14 @@ class perfilRefugiado : AppCompatActivity() {
     }
 
 
+
     // Função para enviar a imagem para a API
     fun uploadImageToAPI(base64Image: String) {
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(ProfilePictureService::class.java)
         Log.d("aaa", base64Image)
-        val callback: Call<ResponseBody> = service.uploadPicture("Rajah", base64Image)
+        val requestBody = ProfilePicture(base64Image);
+        val callback: Call<ResponseBody> = service.uploadPicture("Rajah", requestBody)
 
         callback.enqueue(object : retrofit2.Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {

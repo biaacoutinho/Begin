@@ -19,9 +19,8 @@ exports.postPicture = ('/upload/:username', async (req, res) => {
                 upsert: false
             });
 
-        console.log(data)
-        console.log("erro " + erro)
-        res.status(200).json({ error: data.message });
+        console.log("data: " + data)
+        res.status(200).json({ error: data });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
