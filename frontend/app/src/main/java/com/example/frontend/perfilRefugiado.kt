@@ -131,13 +131,13 @@ class perfilRefugiado : AppCompatActivity() {
     fun bitmapToFile(context: Context, bitmap: Bitmap): File? {
         Log.d("aaaa3", "foi3")
 
-        val file = File(context.cacheDir, user.username + ".png") // Use cacheDir ou outro diretório adequado
+        val file = File(context.cacheDir, "Rajah" + ".jpg") // Use cacheDir ou outro diretório adequado
 
         Log.d("aaaa4", "foi4")
 
         try {
             val stream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream) // Escolha o formato e qualidade desejados
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream) // Escolha o formato e qualidade desejados
             Log.d("aaaa5", "foi5")
 
             stream.flush()
@@ -153,9 +153,9 @@ class perfilRefugiado : AppCompatActivity() {
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(ProfilePictureService::class.java)
         Log.d("aaaa1", "foi1")
-        val callback: Call<ResponseBody> = service.uploadPicture(user.username, file)
+        val callback: Call<ResponseBody> = service.uploadPicture("Rajah", file)
         Log.d("aaaa2", "foi2")
-
+        Log.d("arquivo", file.extension)
         callback!!.enqueue(object : retrofit2.Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                 if (response?.isSuccessful == true) {

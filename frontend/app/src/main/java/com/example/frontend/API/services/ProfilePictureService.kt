@@ -1,5 +1,7 @@
 package com.example.frontend.API.services
 
+import android.media.Image
+import com.example.frontend.API.models.Refugiado
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -8,6 +10,6 @@ import retrofit2.http.Path
 import java.io.File
 
 interface ProfilePictureService {
-    @PUT("/refugiado/{username}")
-    fun uploadPicture(@Path("username") username: String, @Body image: File): Call<ResponseBody>
+    @PUT("/upload/{username}")
+    fun uploadPicture(@Path("username") username: String, @Body profilePicture : File): Call<ResponseBody>
 }
