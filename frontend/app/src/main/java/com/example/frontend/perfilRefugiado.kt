@@ -115,8 +115,8 @@ class perfilRefugiado : AppCompatActivity() {
                         selectedImageUri
                     )
 
-                    val file = bitmapToFile(this, selectedImageBitmap)
-                    salvarImagem(file!!)
+                    val file = bitmapToBase64(selectedImageBitmap)
+                    uploadImageToAPI(file!!)
                     imgPerfil.clipToOutline = true
                     imgPerfil.setImageBitmap(
                         selectedImageBitmap
@@ -128,40 +128,28 @@ class perfilRefugiado : AppCompatActivity() {
         }
     }
 
-    fun bitmapToFile(context: Context, bitmap: Bitmap): File? {
-        Log.d("aaaa3", "foi3")
-
-        val file = File(context.cacheDir, "Rajah" + ".jpg") // Use cacheDir ou outro diretório adequado
-
-        Log.d("aaaa4", "foi4")
-
-        try {
-            val stream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream) // Escolha o formato e qualidade desejados
-            Log.d("aaaa5", "foi5")
-
-            stream.flush()
-            stream.close()
-            return file
-        } catch (e: IOException) {
-            e.printStackTrace()
-            return null
-        }
+    // Função para converter uma imagem em Base64
+    fun bitmapToBase64(bitmap: Bitmap): String {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        return Base64.encodeToString(byteArray, Base64.DEFAULT)
     }
 
-    fun salvarImagem(file: File) {
+    // Função para enviar a imagem para a API
+    fun uploadImageToAPI(base64Image: String) {
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(ProfilePictureService::class.java)
-        Log.d("aaaa1", "foi1")
-        val callback: Call<ResponseBody> = service.uploadPicture("Rajah", file)
-        Log.d("aaaa2", "foi2")
-        Log.d("arquivo", file.extension)
-        callback!!.enqueue(object : retrofit2.Callback<ResponseBody> {
+
+        val callback: Call<ResponseBody> = service.uploadPicture("Rajah", base64Image)
+
+        callback.enqueue(object : retrofit2.Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                 if (response?.isSuccessful == true) {
+                    // A imagem foi enviada com sucesso
                     Toast.makeText(
                         this@perfilRefugiado,
-                        "Cadastro feito com sucesso",
+                        "Imagem enviada com sucesso",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -177,4 +165,5 @@ class perfilRefugiado : AppCompatActivity() {
             }
         })
     }
+
 }

@@ -6,13 +6,15 @@ exports.postPicture = ('/upload/:username', async (req, res) => {
         const username = req.params.username;
         console.log(username)
 
-        const imagePath = req.body.path; 
-        const imageFile = fs.readFileSync(imagePath);
-        console.log(imageFile)
+        const base64Image = req.body.base64Image; 
+        const binaryImage = Buffer.from(base64Image, 'base64');
+        console.log(base64Image)
+        console.log(binaryImage)
+
         const { data, error } = await db
             .storage
             .from('profilePictures')
-            .upload( username, imageFile, {
+            .upload( username, binaryImage, {
                 cacheControl: '30',
                 upsert: false
             });

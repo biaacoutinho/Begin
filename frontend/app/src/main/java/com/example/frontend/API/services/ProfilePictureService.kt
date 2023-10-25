@@ -11,5 +11,5 @@ import java.io.File
 
 interface ProfilePictureService {
     @PUT("/upload/{username}")
-    fun uploadPicture(@Path("username") username: String, @Body profilePicture : File): Call<ResponseBody>
+    fun uploadPicture(@Path("username") username: String, @Body profilePicture : String): Call<ResponseBody>
 }
