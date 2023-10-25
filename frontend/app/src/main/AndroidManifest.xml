@@ -77,6 +77,15 @@
         <activity
             android:name=".EditarPerfilVoluntario">
         </activity>
+        <activity
+            android:name=".ConexaoVol">
+        </activity>
+        <activity
+            android:name=".ConexaoData">
+        </activity>
+        <activity
+            android:name=".ConexaoAdapter">
+        </activity>
     </application>
 
 </manifest>

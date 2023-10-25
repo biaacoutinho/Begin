@@ -13,7 +13,7 @@ import kotlin.collections.ArrayList
 class ConexaoVol : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var searchView: SearchView
+    private lateinit var searchView: androidx.appcompat.widget.SearchView
     private var mList = ArrayList<ConexaoData>()
     private lateinit var adapter: ConexaoAdapter
 
@@ -22,7 +22,7 @@ class ConexaoVol : AppCompatActivity() {
         setContentView(R.layout.activity_teste)
 
         recyclerView = findViewById(R.id.recyclerView)
-        searchView = findViewById(R.id.searchView)
+        searchView = findViewById<androidx.appcompat.widget.SearchView>(R.id.searchView)
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -30,7 +30,7 @@ class ConexaoVol : AppCompatActivity() {
         adapter = ConexaoAdapter(mList)
         recyclerView.adapter = adapter
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return false
             }
@@ -59,5 +59,7 @@ class ConexaoVol : AppCompatActivity() {
     }
     private fun addDataToList(){
         mList.add(ConexaoData("nome do usuario", "usuario", "Idioma do usuário", "Habilidade do usúario"))
+        mList.add(ConexaoData("Hugo", "huguinho123", "PortuguÊs", "Cantor"))
+
     }
 }
