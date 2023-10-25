@@ -45,8 +45,8 @@ class ConexaoVol : AppCompatActivity() {
         if(query != null){
             val filteredList = ArrayList<ConexaoData>()
             for(i in mList){
-                if(i.user.lowercase(Locale.ROOT).contains(query) || i.nomeUsuario.lowercase(Locale.ROOT).contains(query)
-                    || i.habilidadesUser.lowercase(Locale.ROOT).contains(query) || i.idiomaUser.lowercase(Locale.ROOT).contains(query) ){
+                if(i.user.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT)) || i.nomeUsuario.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT))
+                    || i.habilidadesUser.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT)) || i.idiomaUser.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT)) ){
                     filteredList.add(i)
                 }
             }
