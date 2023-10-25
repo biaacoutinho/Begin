@@ -36,6 +36,8 @@ class EditarPerfilRefugiado : AppCompatActivity() {
         val gUser = application as GlobalUser
         val user = gUser.getGlobalRefugiado()
 
+        val apiKey = BuildConfig.TOMTOM_API_KEY
+
         tvNome.text = user?.nome
         tvUsername.text = "@" + user?.username
         txtIdiomas.setText(user?.idioma)
