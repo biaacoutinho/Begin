@@ -21,7 +21,9 @@ import com.example.frontend.API.services.ProfilePictureService
 import com.example.frontend.API.services.RefugiadoService
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.imageview.ShapeableImageView
+import com.squareup.picasso.Picasso
 import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -31,8 +33,7 @@ import java.io.IOException
 
 class perfilRefugiado : AppCompatActivity() {
     lateinit var imgPerfil : ImageView
-    lateinit var user: Refugiado
-
+    //var user: Refugiado
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil_refugiado)
@@ -48,7 +49,7 @@ class perfilRefugiado : AppCompatActivity() {
         imgPerfil = findViewById<ShapeableImageView>(R.id.imgPerfilRefugiado)
 
         val gUser = application as GlobalUser
-        val user = gUser.getGlobalRefugiado()
+        val user = gUser.getGlobalRefugiado()!!
 
         btnDeslogin.setOnClickListener(){
             val gUser = application as GlobalUser
@@ -82,6 +83,8 @@ class perfilRefugiado : AppCompatActivity() {
             tvEmail.text = user?.email
         else
             tvEmail.text = "Nenhum email foi cadastrado"
+
+        atualizarImagem()
     }
 
     private fun seletorDeImagem(){
@@ -154,6 +157,40 @@ class perfilRefugiado : AppCompatActivity() {
             override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                 if (response?.isSuccessful == true) {
                     // A imagem foi enviada com sucesso
+                    Toast.makeText(
+                        this@perfilRefugiado,
+                        "Imagem enviada com sucesso",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                } else {
+                    // Lidar com a resposta sem sucesso aqui
+                    val errorBody = response?.errorBody()?.string()
+                    Log.d("erro", "Erro na resposta: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+                val messageProblem: String = t?.message.toString()
+                Log.d("erro", messageProblem)
+            }
+        })
+    }
+
+    fun atualizarImagem(){
+        val retrofitClient = RetrofitClient.getRetrofit()
+        val service = retrofitClient.create(ProfilePictureService::class.java)
+        Log.d("aaa", "foi")
+        val callback: Call<ResponseBody> = service.getPicture("Rajah")
+
+        callback.enqueue(object : retrofit2.Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+                if (response?.isSuccessful == true) {
+                    val responseBody = response.body()?.string()
+                    val jsonResponse = JSONObject(responseBody)
+                    val fileUrl = jsonResponse.optString("url")
+                    Log.d("link", fileUrl)
+                    Picasso.get().load(fileUrl).into(imgPerfil)
                     Toast.makeText(
                         this@perfilRefugiado,
                         "Imagem enviada com sucesso",

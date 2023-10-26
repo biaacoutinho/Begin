@@ -37,6 +37,7 @@ router.put('/avaliacaoVoluntario', crtAvVolun.putAvaliacaoVoluntario)
 router.post('/avaliacaoVoluntario/:id', crtAvVolun.postAvaliacaoVoluntario)
 router.delete('/avaliacaoVoluntario/:usernameRef/:usernameVolun', crtAvVolun.deleteAvaliacaoVoluntario)
 
-router.put('/upload/:username', ctrProfPicture.postPicture)
+router.put('/picture/:username', ctrProfPicture.postPicture)
+router.get('/picture/:username', ctrProfPicture.getPicture)
 
 module.exports = router

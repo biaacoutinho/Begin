@@ -1,7 +1,7 @@
 const db = require('../db');
 const fs = require('fs');
 
-exports.postPicture = ('/upload/:username', async (req, res) => {
+exports.postPicture = ('/picture/:username', async (req, res) => {
     try {
         const username = req.params.username;
         console.log(username)
@@ -16,7 +16,7 @@ exports.postPicture = ('/upload/:username', async (req, res) => {
             .from('profilePictures')
             .upload( username, binaryImage, {
                 cacheControl: '30',
-                upsert: false
+                upsert: true
             });
 
         console.log("data: " + data)
@@ -25,3 +25,18 @@ exports.postPicture = ('/upload/:username', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+exports.getPicture = ('/picture/:username', async(req, res) => {
+    try{
+        const username = req.params.username;
+        const {data, error } = await db.storage
+        .from('profilePictures')
+        .getPublicUrl(username)
+
+        res.status(200).json({ url: data.publicUrl });
+        console.log(data.publicUrl)
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+})
