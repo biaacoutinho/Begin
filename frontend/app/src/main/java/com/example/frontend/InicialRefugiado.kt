@@ -22,6 +22,9 @@ class InicialRefugiado : AppCompatActivity() {
         val secaoConexao = findViewById<LinearLayout>(R.id.secaoConexaoVoluntarios)
         val btnConexao = findViewById<Button>(R.id.btnConectaVol)
 
+        val secaoAbrigo = findViewById<LinearLayout>(R.id.secaoAbrigo)
+        val btnAbrigo = findViewById<Button>(R.id.btnAbrigo)
+
         btnPerfilRefugiado.setOnClickListener() {
             val gUser = application as GlobalUser
             val user = gUser.getGlobalRefugiado()
@@ -30,6 +33,16 @@ class InicialRefugiado : AppCompatActivity() {
                 startActivity(Intent(this, perfilRefugiado::class.java))
             else
                 startActivity(Intent(this, Login::class.java))
+        }
+
+        btnAbrigo.setOnClickListener() {
+            val intent = Intent(this, TelaMapa::class.java)
+            startActivity(intent)
+        }
+
+        secaoAbrigo.setOnClickListener() {
+            val intent = Intent(this, TelaMapa::class.java)
+            startActivity(intent)
         }
 
         btnDoacao.setOnClickListener() {

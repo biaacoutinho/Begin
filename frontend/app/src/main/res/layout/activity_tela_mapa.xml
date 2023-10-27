@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1F0E8">
@@ -30,15 +34,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/image_1" />
 
-    <ImageView
-        android:id="@+id/imgLogo2"
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map_container"
         android:layout_width="333dp"
         android:layout_height="369dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="168dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_mapa" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,7 +73,7 @@
         android:contentDescription="Botão para acessar o perfil do refugiado" />
 
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/searchBar"
         android:layout_width="360dp"
         android:layout_height="50dp"
@@ -80,27 +85,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <LinearLayout
         android:id="@+id/ong1"
         android:layout_width="356dp"
-        android:layout_height="143dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/rounded_edittext_searchbar"
         android:backgroundTint="#FFFFFF"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93">
+        app:layout_constraintTop_toBottomOf="@+id/map_container">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
 
@@ -122,11 +128,46 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="Endereço: Rua Dr. Sales de Oliveira, número 653, Vila Industrial, Campinas, São Paulo, CEP 13035-270"
                 android:text="Endereço: Rua Dr. Sales de Oliveira, número 653, Vila Industrial, Campinas, São Paulo, CEP 13035-270"
                 android:textColor="#333333"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="306dp"
+                android:layout_height="wrap_content"
+                android:text="Instituto Compaixão Aquece"
+                android:textColor="#000000"
                 android:textSize="20dp"
-                android:contentDescription="Endereço: Rua Dr. Sales de Oliveira, número 653, Vila Industrial, Campinas, São Paulo, CEP 13035-270" />
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.3  ★"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Endereço: Rua Dr. Sales de Oliveira, número 653, Vila Industrial, Campinas, São Paulo, CEP 13035-270"
+                android:text="Endereço: Rua Dr. Sales de Oliveira, número 653, Vila Industrial, Campinas, São Paulo, CEP 13035-270"
+                android:textColor="#333333"
+                android:textSize="20dp" />
 
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

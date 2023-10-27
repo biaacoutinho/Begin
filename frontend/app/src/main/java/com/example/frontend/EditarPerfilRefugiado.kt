@@ -35,8 +35,7 @@ class EditarPerfilRefugiado : AppCompatActivity() {
 
         val gUser = application as GlobalUser
         val user = gUser.getGlobalRefugiado()
-
-        val apiKey = BuildConfig.API_KEY;
+        
 
         tvNome.text = user?.nome
         tvUsername.text = "@" + user?.username
