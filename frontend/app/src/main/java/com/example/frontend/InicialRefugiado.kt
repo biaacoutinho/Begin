@@ -44,10 +44,10 @@ class InicialRefugiado : AppCompatActivity() {
         }
 
         secaoConexao.setOnClickListener() {
-            startActivity(Intent(this, ConexoesVoluntario::class.java))
+            startActivity(Intent(this, ConexaoVol::class.java))
         }
         btnConexao.setOnClickListener() {
-            startActivity(Intent(this, ConexoesVoluntario::class.java))
+            startActivity(Intent(this, ConexaoVol::class.java))
         }
     }
 }
