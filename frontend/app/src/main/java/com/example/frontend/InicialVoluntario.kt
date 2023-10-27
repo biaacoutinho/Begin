@@ -17,15 +17,15 @@ class InicialVoluntario : AppCompatActivity() {
         val btnDoacao = findViewById<LinearLayout>(R.id.secaoDoacao)
 
         btnPerfil.setOnClickListener(){
-            startActivity(Intent(this, ConexaoVol::class.java))
+            startActivity(Intent(this, PerfilVoluntario::class.java))
         }
 
         btnSolicitacao.setOnClickListener(){
-            startActivity(Intent(this, SolicitacaoRefugiado::class.java))
+            startActivity(Intent(this, Solicitacoes::class.java))
         }
 
         btnDoacao.setOnClickListener(){
-            val intent = Intent(this, Doacao::class.java)
+            val intent = Intent(this, Ong::class.java)
             intent.putExtra("ondeVeio", "voluntario")
             startActivity(intent)
         }

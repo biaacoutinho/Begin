@@ -46,7 +46,7 @@ class InicialRefugiado : AppCompatActivity() {
         }
 
         btnDoacao.setOnClickListener() {
-            val intent = Intent(this, Doacao::class.java)
+            val intent = Intent(this, Ong::class.java)
             intent.putExtra("ondeVeio", "refugiado")
             startActivity(intent)
         }
@@ -57,10 +57,10 @@ class InicialRefugiado : AppCompatActivity() {
         }
 
         secaoConexao.setOnClickListener() {
-            startActivity(Intent(this, ConexoesVoluntario::class.java))
+            startActivity(Intent(this, ConexaoVol::class.java))
         }
         btnConexao.setOnClickListener() {
-            startActivity(Intent(this, ConexoesVoluntario::class.java))
+            startActivity(Intent(this, ConexaoVol::class.java))
         }
     }
 }

@@ -22,7 +22,7 @@ class ConexaoAdapter(var mList: List<ConexaoData>) : RecyclerView.Adapter<Conexa
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConexaoViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_outro_teste, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_conexao_voluntario, parent, false)
         return ConexaoViewHolder(view)
     }
 
