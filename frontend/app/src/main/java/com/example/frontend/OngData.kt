@@ -1,4 +1,3 @@
 package com.example.frontend
 
-class OngData {
-}
+class OngData(val title: String, val logo: Int)

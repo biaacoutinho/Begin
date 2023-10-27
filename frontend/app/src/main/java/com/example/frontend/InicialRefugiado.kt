@@ -33,7 +33,7 @@ class InicialRefugiado : AppCompatActivity() {
         }
 
         btnDoacao.setOnClickListener() {
-            val intent = Intent(this, Doacao::class.java)
+            val intent = Intent(this, Ong::class.java)
             intent.putExtra("ondeVeio", "refugiado")
             startActivity(intent)
         }

@@ -1,12 +1,16 @@
 package com.example.frontend
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.intellij.lang.annotations.Language
+import com.example.frontend.API.RetrofitClient
+import com.example.frontend.API.models.Voluntario
+import com.example.frontend.API.services.VoluntarioService
+import retrofit2.Call
+import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -19,7 +23,7 @@ class ConexaoVol : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_teste)
+        setContentView(R.layout.activity_recycler)
 
         recyclerView = findViewById(R.id.recyclerView)
         searchView = findViewById<androidx.appcompat.widget.SearchView>(R.id.searchView)
@@ -58,8 +62,34 @@ class ConexaoVol : AppCompatActivity() {
         }
     }
     private fun addDataToList(){
-        mList.add(ConexaoData("nome do usuario", "usuario", "Idioma do usuário", "Habilidade do usúario"))
-        mList.add(ConexaoData("Hugo", "huguinho123", "PortuguÊs", "Cantor"))
+        val retrofitClient = RetrofitClient.getRetrofit()
+        val service = retrofitClient.create(VoluntarioService::class.java)
+        val callback = service.getVoluntarios()
 
+        callback.enqueue(object : retrofit2.Callback<List<Voluntario>> {
+            override fun onResponse(
+                call: Call<List<Voluntario>>?,
+                response: Response<List<Voluntario>>?
+            ) {
+                val voluntarioList = response?.body()
+
+                if (voluntarioList != null) {
+                    if (response!!.isSuccessful) {
+                        for (voluntario in voluntarioList) {
+                            mList.add(ConexaoData(voluntario.nome, voluntario.username, voluntario.idioma, voluntario.habilidade ))
+                        }
+
+                    } else {
+                        val errorMessage = response?.errorBody().toString()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<Voluntario>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
+
 }

@@ -21,11 +21,11 @@ class InicialVoluntario : AppCompatActivity() {
         }
 
         btnSolicitacao.setOnClickListener(){
-            startActivity(Intent(this, SolicitacaoRefugiado::class.java))
+            startActivity(Intent(this, Solicitacoes::class.java))
         }
 
         btnDoacao.setOnClickListener(){
-            val intent = Intent(this, Doacao::class.java)
+            val intent = Intent(this, Ong::class.java)
             intent.putExtra("ondeVeio", "voluntario")
             startActivity(intent)
         }

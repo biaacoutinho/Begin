@@ -260,7 +260,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Imigrante e Refugiada"
+                    android:text="aImigrante e Refugiada"
                     android:textColor="#FFFFFF"
                     android:textSize="24dp"
                     android:textStyle="bold" />
