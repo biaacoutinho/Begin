@@ -23,6 +23,7 @@ router.delete('/voluntario/:username', ctrVolun.deleteVoluntario)
 router.get('/conexoes', ctrCon.getConexoes)
 router.get('/conexao/:role/:username', ctrCon.getConexao)
 router.put('/conexao', ctrCon.putConexao)
+router.post('/conexao/:usernameRef/:usernameVolun', ctrCon.postConexao)
 router.delete('/conexao/:usernameRef/:usernameVolun', ctrCon.deleteConexao)
 
 router.get('/avaliacoesLocal', crtAvLocal.getAvaliacoesLocal)

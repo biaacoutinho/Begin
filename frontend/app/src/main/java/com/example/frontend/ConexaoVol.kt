@@ -31,7 +31,7 @@ class ConexaoVol : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         addDataToList()
-        adapter = ConexaoAdapter(mList)
+        adapter = ConexaoAdapter(mList, this, application)
         recyclerView.adapter = adapter
 
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {

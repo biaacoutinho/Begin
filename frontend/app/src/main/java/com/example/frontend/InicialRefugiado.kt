@@ -19,6 +19,9 @@ class InicialRefugiado : AppCompatActivity() {
         val secaoDoacao = findViewById<LinearLayout>(R.id.secaoDoacao)
         val btnDoacao = findViewById<Button>(R.id.btnDoacao)
 
+        val secaoVoluntarios = findViewById<LinearLayout>(R.id.secaoVoluntarios)
+        val btnVoluntario = findViewById<Button>(R.id.btnVoluntario)
+
         val secaoConexao = findViewById<LinearLayout>(R.id.secaoConexaoVoluntarios)
         val btnConexao = findViewById<Button>(R.id.btnConectaVol)
 
@@ -54,6 +57,13 @@ class InicialRefugiado : AppCompatActivity() {
             val intent = Intent(this, Doacao::class.java)
             intent.putExtra("ondeVeio", "refugiado")
             startActivity(intent)
+        }
+
+        secaoVoluntarios.setOnClickListener() {
+            startActivity(Intent(this, ConexaoVol::class.java))
+        }
+        btnVoluntario.setOnClickListener() {
+            startActivity(Intent(this, ConexaoVol::class.java))
         }
 
         secaoConexao.setOnClickListener() {

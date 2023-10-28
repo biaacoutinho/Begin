@@ -19,66 +19,75 @@
 
         >
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+        <com.example.frontend.layoutclasses.RoundImageView
+            android:id="@+id/imgPerfil"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="12dp"
-            android:paddingBottom="30dp"
-            app:cardCornerRadius="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-            <ImageView
-                android:id="@+id/logoIv"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/username_icon" />
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/name_icon" />
 
         <TextView
             android:id="@+id/nomeUsuario"
-            android:layout_width="240dp"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Talitha Mendes"
             android:textColor="#000000"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/cardView"
+            app:layout_constraintStart_toEndOf="@id/imgPerfil"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/user"
-            android:layout_width="240dp"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="36dp"
             android:text="#Tata_Mendes"
             android:textColor="#000000"
             android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnConectar"
             app:layout_constraintTop_toBottomOf="@+id/nomeUsuario" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnConectar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="#5FAEB7"
+            android:clickable="true"
+            android:contentDescription="Botão para conectar com voluntário"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nomeUsuario"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.021"
+            app:fabCustomSize="40dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/icon_add" />
+
 
         <TextView
             android:id="@+id/idioma"
-            android:layout_width="wrap_content"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="108dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginBottom="5dp"
             android:text="Português, Inglês, Alemão"
             android:textColor="#000000"
             android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/nomeUsuario" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="4dp"
             android:text="Habilidades:"
             android:textColor="#000000"
@@ -89,7 +98,7 @@
 
         <TextView
             android:id="@+id/habilidadeUser"
-            android:layout_width="wrap_content"
+            android:layout_width="208dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
@@ -103,14 +112,16 @@
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             android:text="Idiomas:"
             android:textColor="#000000"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/idioma"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintTop_toBottomOf="@+id/user" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
