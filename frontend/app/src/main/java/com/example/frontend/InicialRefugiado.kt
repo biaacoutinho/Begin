@@ -49,28 +49,33 @@ class InicialRefugiado : AppCompatActivity() {
         }
 
         btnDoacao.setOnClickListener() {
-            val intent = Intent(this, Ong::class.java)
-            intent.putExtra("ondeVeio", "refugiado")
-            startActivity(intent)
+            startActivity(Intent(this, Ong::class.java))
         }
         secaoDoacao.setOnClickListener() {
-            val intent = Intent(this, Doacao::class.java)
-            intent.putExtra("ondeVeio", "refugiado")
-            startActivity(intent)
+            startActivity(Intent(this, Ong::class.java))
         }
 
         secaoVoluntarios.setOnClickListener() {
-            startActivity(Intent(this, ConexaoVol::class.java))
+            val intent = Intent(this, ConexaoVol::class.java)
+            intent.putExtra("qualExibicao", "voluntariosConectados")
+            startActivity(intent)
         }
         btnVoluntario.setOnClickListener() {
-            startActivity(Intent(this, ConexaoVol::class.java))
+            val intent = Intent(this, ConexaoVol::class.java)
+            intent.putExtra("qualExibicao", "voluntariosConectados")
+            startActivity(intent)
         }
 
         secaoConexao.setOnClickListener() {
-            startActivity(Intent(this, ConexaoVol::class.java))
+            val intent = Intent(this, ConexaoVol::class.java)
+            intent.putExtra("qualExibicao", "criarConexao")
+            startActivity(intent)
         }
+
         btnConexao.setOnClickListener() {
-            startActivity(Intent(this, ConexaoVol::class.java))
+            val intent = Intent(this, ConexaoVol::class.java)
+            intent.putExtra("qualExibicao", "criarConexao")
+            startActivity(intent)
         }
     }
 }

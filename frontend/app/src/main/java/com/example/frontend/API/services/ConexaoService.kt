@@ -22,8 +22,8 @@ interface ConexaoService {
     fun postConexao(@Body conexao: Conexao): Call<List<Conexao>>
 
     @POST("/conexao/{usernameRefugiado}/{usernameVoluntario}")
-    fun putConexao(@Path("usernameRefugiado") usernameRefugiado: String, @Path("usernameVoluntario") usernameVoluntario: String, conexao: Conexao): Call<List<Conexao>>
+    fun putConexao(@Path("usernameRefugiado") usernameRefugiado: String, @Path("usernameVoluntario") usernameVoluntario: String, @Body conexao: Conexao): Call<List<Conexao>>
 
     @DELETE("/conexao/{usernameRefugiado}/{usernameVoluntario}")
-    fun deleteConexao(@Path("usernameRefugiado") usernameRefugiado: String, @Path("usernameVoluntario") usernameVoluntario: String): Call<Conexao>
+    fun deleteConexao(@Path("usernameRefugiado") usernameRefugiado: String, @Path("usernameVoluntario") usernameVoluntario: String): Call<List<Conexao>>
 }

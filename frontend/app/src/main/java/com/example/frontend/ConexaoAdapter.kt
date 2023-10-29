@@ -3,6 +3,7 @@ package com.example.frontend
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import android.text.BoringLayout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,7 @@ class ConexaoAdapter(var mList: List<ConexaoData>, private val context: Context,
         val idiomaUser : TextView = itemView.findViewById(R.id.idioma)
         val habilidadesUser : TextView = itemView.findViewById(R.id.habilidadeUser)
         val btnConectar : FloatingActionButton = itemView.findViewById<FloatingActionButton>(R.id.btnConectar)
+        var conectado: Boolean = false
 
     }
 
@@ -58,11 +60,15 @@ class ConexaoAdapter(var mList: List<ConexaoData>, private val context: Context,
         holder.habilidadesUser.text = mList[position].habilidadesUser
         getProfileImage(mList[position].user, holder.imgPerfil)
 
+
         holder.btnConectar.setImageResource(R.drawable.icon_add)
-        verificarBotao(mList[position].user, holder.btnConectar)
+        verificarBotao(mList[position].user, holder.btnConectar, holder)
 
         holder.btnConectar.setOnClickListener{
-            salvarConexao(mList[position].user, holder.btnConectar)
+            if (holder.conectado)
+                deletarConexao(mList[position].user, holder.btnConectar, holder)
+            else
+                salvarConexao(mList[position].user, holder.btnConectar, holder)
         }
     }
 
@@ -99,7 +105,7 @@ class ConexaoAdapter(var mList: List<ConexaoData>, private val context: Context,
         })
     }
 
-    fun salvarConexao(voluntario: String, btnConectar: FloatingActionButton){
+    fun salvarConexao(voluntario: String, btnConectar: FloatingActionButton, holder: ConexaoViewHolder){
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(ConexaoService::class.java)
 
@@ -120,6 +126,7 @@ class ConexaoAdapter(var mList: List<ConexaoData>, private val context: Context,
                 Log.d("foii", "criou a conecao")
                 Toast.makeText(context, "Solicitação enviada para @" + voluntario, Toast.LENGTH_LONG).show()
                 btnConectar.setImageResource(R.drawable.icon_sino)
+                holder.conectado = true
                 //startActivity(Intent(this@CadastroRefugiado, InicialRefugiado::class.java))
             }
             override fun onFailure(call: Call<List<Conexao>>?, t: Throwable?) {
@@ -130,7 +137,7 @@ class ConexaoAdapter(var mList: List<ConexaoData>, private val context: Context,
         })
     }
 
-    fun verificarBotao(voluntario: String, btnConectar: FloatingActionButton){
+    fun verificarBotao(voluntario: String, btnConectar: FloatingActionButton, holder: ConexaoViewHolder){
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(ConexaoService::class.java)
 
@@ -146,17 +153,52 @@ class ConexaoAdapter(var mList: List<ConexaoData>, private val context: Context,
             ) {
                 if (response!!.isSuccessful) {
                     val conexoesList = response.body()
-                    val conexaoVoluntario: Conexao
+
                     if (conexoesList != null){
                         for (conexao in conexoesList){
                             if (conexao.pendente && conexao.usernameVoluntario == voluntario)
+                            {
                                 btnConectar.setImageResource(R.drawable.icon_sino)
+                                holder.conectado = true
+                            }
                             else if (!conexao.pendente && conexao.usernameVoluntario == voluntario)
-                                btnConectar.setImageResource(R.drawable.update_icon)
+                            {
+                                btnConectar.setImageResource(R.drawable.aceitar_icon)
+                                holder.conectado = true
                             }
                         }
                     }
                 }
+            }
+            override fun onFailure(call: Call<List<Conexao>>?, t: Throwable?) {
+                val messageProblem: String = t?.message.toString()
+                Log.d("erro", messageProblem)
+                //Toast.makeText(this@CadastroRefugiado, "Não foi possível cadastrar", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    fun deletarConexao(voluntario: String, btnConectar: FloatingActionButton, holder: ConexaoViewHolder){
+        val retrofitClient = RetrofitClient.getRetrofit()
+        val service = retrofitClient.create(ConexaoService::class.java)
+
+        val gUser = application as GlobalUser
+        val refugiado = gUser.getGlobalRefugiado()
+
+        val callback : Call<List<Conexao>> = service.deleteConexao(refugiado!!.username, voluntario)
+
+        callback!!.enqueue(object : retrofit2.Callback<List<Conexao>> {
+            override fun onResponse(
+                call: Call<List<Conexao>>?,
+                response: Response<List<Conexao>>?
+            ) {
+                if (response!!.isSuccessful) {
+                    val resposta = response.body()
+                    Log.d("foi?", resposta.toString())
+                    btnConectar.setImageResource(R.drawable.icon_add)
+                    holder.conectado = false
+                }
+            }
             override fun onFailure(call: Call<List<Conexao>>?, t: Throwable?) {
                 val messageProblem: String = t?.message.toString()
                 Log.d("erro", messageProblem)

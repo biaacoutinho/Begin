@@ -27,7 +27,6 @@ exports.getConexao = ('/conexao/:role/:username', async(req, res) => {
         if (error) {
         throw error;
         }
-        console.log(data)
         res.json(data);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -63,7 +62,7 @@ exports.postConexao = ('/conexao/:usernameRef/:usernameVolun', async(req, res) =
 
   try {
     const { data, error } = await db
-      .from('Refugiado')
+      .from('ConexaoRefugiadoVoluntario')
       .update({ usernameRefugiado: usernameRef, usernameVoluntario: usernameVolun, pendente: pendente })
       .eq('usernameRefugiado', usernameRef)
       .eq('usernameVoluntario', usernameVolun)
@@ -81,8 +80,6 @@ exports.postConexao = ('/conexao/:usernameRef/:usernameVolun', async(req, res) =
 exports.deleteConexao = ('/conexao/:usernameRef/:usernameVolun', async(req, res) => {
     const usernameRef = req.params.usernameRef;
     const usernameVolun = req.params.usernameVolun;
-
-    console.log(usernameRef, usernameVolun)
 
     try {
       const { data, error } = await db
