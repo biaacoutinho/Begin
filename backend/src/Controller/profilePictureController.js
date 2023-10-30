@@ -8,8 +8,6 @@ exports.postPicture = ('/picture/:username', async (req, res) => {
 
         const base64Image = req.body.base64Image; 
         const binaryImage = Buffer.from(base64Image, 'base64');
-        console.log(base64Image)
-        console.log(binaryImage)
 
         const { data, error } = await db
             .storage
@@ -34,7 +32,6 @@ exports.getPicture = ('/picture/:username', async(req, res) => {
         .getPublicUrl(username)
 
         res.status(200).json({ url: data.publicUrl });
-        console.log(data.publicUrl)
     }
     catch (error) {
         res.status(400).json({ error: error.message });
