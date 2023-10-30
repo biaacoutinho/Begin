@@ -30,8 +30,8 @@ class TelaMapa : AppCompatActivity() {
         mapFragment.getMapAsync { tomtomMap : TomTomMap ->
             tomTomMap = tomtomMap
             enableUserLocation()
-            setUpMapListeners()
-            showUserLocation()
+            /*setUpMapListeners()
+            showUserLocation()*/
         }
     }
 
@@ -40,8 +40,7 @@ class TelaMapa : AppCompatActivity() {
     }
 
     private fun enableUserLocation() {
-        locationProvider = AndroidLocationProvider(context = this)
-        locationProvider.enable()
+        tomTomMap.isMyLocationEnabled = true
     }
 
     private fun showUserLocation() {
