@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
 import com.tomtom.sdk.location.GeoLocation
 import com.tomtom.sdk.location.OnLocationUpdateListener
-import com.tomtom.sdk.location.android.AndroidLocationProvider
+//import com.tomtom.sdk.location.android.AndroidLocationProvider
 import com.tomtom.sdk.map.display.MapOptions
 import com.tomtom.sdk.map.display.TomTomMap
 import com.tomtom.sdk.map.display.camera.CameraOptions
@@ -14,7 +14,7 @@ import com.tomtom.sdk.map.display.ui.MapFragment
 
 class TelaMapa : AppCompatActivity() {
     private lateinit var tomTomMap : TomTomMap
-    private lateinit var locationProvider : AndroidLocationProvider
+    //private lateinit var locationProvider : AndroidLocationProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +29,13 @@ class TelaMapa : AppCompatActivity() {
 
         mapFragment.getMapAsync { tomtomMap : TomTomMap ->
             tomTomMap = tomtomMap
-            enableUserLocation()
+            //enableUserLocation()
             /*setUpMapListeners()
             showUserLocation()*/
         }
     }
 
-    private fun setUpMapListeners() {
+    /*private fun setUpMapListeners() {
 
     }
 
@@ -53,6 +53,6 @@ class TelaMapa : AppCompatActivity() {
         tomTomMap.setLocationProvider(locationProvider)
         val locationMarker = LocationMarkerOptions(type = LocationMarkerOptions.Type.Pointer)
         tomTomMap.enableLocationMarker(locationMarker)
-    }
+    }*/
 
 }

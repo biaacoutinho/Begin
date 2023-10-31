@@ -125,10 +125,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secaoSolicitacao" />
 
+
     <LinearLayout
         android:id="@+id/sesaoConexoes"
-        android:layout_width="349dp"
-        android:layout_height="194dp"
+        android:layout_width="368dp"
+        android:layout_height="251dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/rounded_edittext_searchbar"
         android:backgroundTint="#FFFFFF"
@@ -140,6 +141,16 @@
         app:layout_constraintTop_toBottomOf="@+id/conexoes"
         app:layout_constraintVertical_bias="0.0">
 
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </ScrollView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

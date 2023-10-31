@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.example.frontend.API.models.Voluntario
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class PerfilVoluntario: AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil_voluntario)
