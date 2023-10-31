@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">frontend</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoibWlvam9kZXRvbWF0IiwiYSI6ImNsb2QxeHQ1ODAydDYya3E2djFsOGUwMnYifQ.nDKi6zynn0htmZ_SFWNvDw</string>
 </resources>
