@@ -45,7 +45,7 @@ class TelaMapa : AppCompatActivity() {
 
         override fun onPermissionResult(granted: Boolean) {
             if (granted) {
-
+                onMapReady()
                 // Permission sensitive logic called here, such as activating the Maps SDK's LocationComponent to show the device's location
 
             } else {
