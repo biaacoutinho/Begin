@@ -11,7 +11,6 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ConexaoService {
-
     @GET("/conexoes")
     fun getConexoes(): Call<List<Conexao>>
 

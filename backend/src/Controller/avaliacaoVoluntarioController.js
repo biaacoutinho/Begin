@@ -1,8 +1,9 @@
 const db = require('../db')
 
-exports.getAvaliacoesVoluntario = ('/avaliacaoVoluntario', async(req, res) => {
+exports.getAvaliacoesVoluntario = ('/avaliacaoVoluntario/:username', async(req, res) => {
+  const username = req.params.username
   try {
-    const { data, error } = await db.from('AvaliacaoVoluntario').select('*');
+    const { data, error } = await db.from('AvaliacaoVoluntario').select('*').eq('usernameVoluntario', username);
     if (error) {
       throw error;
     }

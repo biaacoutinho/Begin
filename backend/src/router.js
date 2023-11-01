@@ -32,7 +32,7 @@ router.put('/avaliacaoLocal', crtAvLocal.putAvaliacaoLocal)
 router.post('/avaliacaoLocal/:id', crtAvLocal.postAvaliacaoLocal)
 router.delete('/avaliacaoLocal/:id', crtAvLocal.deleteAvaliacaoLocal)
 
-router.get('/avaliacoesVoluntario', crtAvVolun.getAvaliacoesVoluntario)
+router.get('/avaliacoesVoluntario/:username', crtAvVolun.getAvaliacoesVoluntario)
 router.get('/avaliacaoVoluntario/:role/:username', crtAvVolun.getAvaliacaoVoluntario)
 router.put('/avaliacaoVoluntario', crtAvVolun.putAvaliacaoVoluntario)
 router.post('/avaliacaoVoluntario/:id', crtAvVolun.postAvaliacaoVoluntario)
