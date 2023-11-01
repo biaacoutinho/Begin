@@ -1,10 +1,19 @@
 package com.example.frontend
 
+//import com.example.frontend.utils.LocationPermissionHelper
+
+import android.content.ContentValues.TAG
+import android.graphics.PointF
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import com.google.gson.JsonElement
+import com.mapbox.android.core.permissions.PermissionsListener
+import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.android.gestures.MoveGestureDetector
+import com.mapbox.geojson.Feature
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
@@ -15,11 +24,10 @@ import com.mapbox.maps.plugin.gestures.gestures
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorBearingChangedListener
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
 import com.mapbox.maps.plugin.locationcomponent.location
-import com.example.frontend.R
-import com.mapbox.android.core.permissions.PermissionsListener
-//import com.example.frontend.utils.LocationPermissionHelper
-import com.mapbox.android.core.permissions.PermissionsManager
-import java.lang.ref.WeakReference
+//import kotlinx.coroutines.DefaultExecutor.key
+//import kotlinx.coroutines.NonCancellable.key
+
+
 /*
 import androidx.fragment.app.FragmentContainerView
 import com.tomtom.sdk.location.GeoLocation
@@ -120,6 +128,27 @@ class TelaMapa : AppCompatActivity() {
             setupGesturesListener()
         }
     }
+
+    /*fun onMapClick(point: LatLng) {
+
+// Convert LatLng coordinates to screen pixel and only query the rendered features.
+        val pixel: PointF = mapView.getMapboxMap().getProjection().toScreenLocation(point)
+        val features: List<Feature> = mapView.getMapboxMap().queryRenderedFeatures(pixel)
+
+// Get the first feature within the list if one exist
+        if (features.size > 0) {
+            val feature: Feature = features[0]
+
+// Ensure the feature has properties defined
+            if (feature.properties() != null) {
+                for ((key, value): Map.Entry<String?, JsonElement?> in feature.properties()
+                    .entrySet()) {
+// Log all the properties
+                    Log.d(TAG, String.format("%s = %s", key, value))
+                }
+            }
+        }
+    }*/
 
     private fun setupGesturesListener() {
         mapView.gestures.addOnMoveListener(onMoveListener)
