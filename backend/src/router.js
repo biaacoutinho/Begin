@@ -34,9 +34,10 @@ router.delete('/avaliacaoLocal/:id', crtAvLocal.deleteAvaliacaoLocal)
 
 router.get('/avaliacoesVoluntario/:username', crtAvVolun.getAvaliacoesVoluntario)
 router.get('/avaliacaoVoluntario/:role/:username', crtAvVolun.getAvaliacaoVoluntario)
+router.get('/avaliacaoVoluntarioPorRef/:usernameRefugiado/:usernameVoluntario', crtAvVolun.getAvaliacaoPorRefugiado)
 router.put('/avaliacaoVoluntario', crtAvVolun.putAvaliacaoVoluntario)
 router.post('/avaliacaoVoluntario/:id', crtAvVolun.postAvaliacaoVoluntario)
-router.delete('/avaliacaoVoluntario/:usernameRef/:usernameVolun', crtAvVolun.deleteAvaliacaoVoluntario)
+router.delete('/avaliacaoVoluntario/:usernameRefugiado/:usernameVoluntario', crtAvVolun.deleteAvaliacaoVoluntario)
 
 router.put('/picture/:username', ctrProfPicture.postPicture)
 router.get('/picture/:username', ctrProfPicture.getPicture)

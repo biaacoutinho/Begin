@@ -14,11 +14,14 @@ interface AvaliacaoVoluntarioService {
     @GET("/avaliacoesVoluntario/{username}")
     fun getAvaliacoes(@Path("username") username: String): Call<List<AvaliacaoVoluntario>>
 
+    @GET("/avaliacaoVoluntarioPorRef/{usernameRefugiado}/{usernameVoluntario}")
+    fun getAvaliacaoPorRefugiado(@Path("usernameRefugiado") usernameRefugiado: String, @Path("usernameVoluntario") usernameVoluntario: String): Call<List<AvaliacaoVoluntario>>
+
     @GET("/avaliacaoVoluntario/{role}/{username}")
     fun getAvaliacao(@Path("role") role: String, @Path("username") username: String): Call<List<AvaliacaoVoluntario>>
 
     @PUT("/avaliacaoVoluntario")
-    fun postAvaliacao(@Body conexao: Conexao): Call<List<AvaliacaoVoluntario>>
+    fun postAvaliacao(@Body avaliacao: AvaliacaoVoluntario): Call<List<AvaliacaoVoluntario>>
 
     @POST("/avaliacaoVoluntario/{id}")
     fun putAvaliacao(@Path("id") id: Int, @Body conexao: Conexao): Call<List<AvaliacaoVoluntario>>

@@ -2,6 +2,7 @@ package com.example.frontend
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -55,6 +56,9 @@ class PerfilVoluntario: AppCompatActivity() {
 
             val user: Voluntario = intent.getSerializableExtra("voluntario") as Voluntario
 
+            val gUser = application as GlobalUser
+            val refugiado = gUser.getGlobalRefugiado()
+
             tvNome.text = user?.nome
             tvUsername.text = "@" + user?.username
             tvIdiomas.text = user?.idioma
@@ -70,6 +74,11 @@ class PerfilVoluntario: AppCompatActivity() {
                 startActivity(Intent(this, InicialVoluntario::class.java))
             }
 
+            btnCurtir.setOnClickListener(){
+                //salvarCurtida(user.username, refugiado!!.username, btnCurtir, btnDescurtir, qtdLikes, qtdDislikes)
+            }
+
+            //getAvaliacaoDoRefugiado(user.username, refugiado!!.username, btnCurtir, btnDescurtir)
             getLikesEDislikes(user.username, qtdLikes, qtdDislikes)
 
         }
@@ -157,6 +166,71 @@ class PerfilVoluntario: AppCompatActivity() {
                         likes.text = somaLikes.toString()
                         dislikes.text = somaDislikes.toString()
 
+                    } else {
+                        val errorMessage = response?.errorBody().toString()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<AvaliacaoVoluntario>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getAvaliacaoDoRefugiado(voluntario: String, refugiado: String, btnCurtir: FloatingActionButton, btnDescurtir: FloatingActionButton){
+        val retrofitClient = RetrofitClient.getRetrofit()
+        val service = retrofitClient.create(AvaliacaoVoluntarioService::class.java)
+        val callback = service.getAvaliacaoPorRefugiado(refugiado, voluntario)
+        Log.d("volun", voluntario)
+        Log.d("ref", refugiado)
+        callback.enqueue(object : retrofit2.Callback<List<AvaliacaoVoluntario>> {
+            override fun onResponse(
+                call: Call<List<AvaliacaoVoluntario>>?,
+                response: Response<List<AvaliacaoVoluntario>>?
+            ) {
+                val avaliacaoList = response?.body()
+                if (avaliacaoList != null) {
+                    if (response!!.isSuccessful) {
+                        Log.d("aaasaaaa", avaliacaoList[0].usernameRefugiado)
+                        if (avaliacaoList[0].like)
+                            btnCurtir.setImageResource(R.drawable.curtido_icon)
+                        else if(avaliacaoList[0].dislike)
+                            btnDescurtir.setImageResource(R.drawable.descutido_icon)
+                    } else {
+                        val errorMessage = response?.errorBody().toString()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<AvaliacaoVoluntario>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun salvarCurtida(voluntario: String, refugiado: String, btnCurtir: FloatingActionButton, btnDescurtir: FloatingActionButton, likes: TextView, dislikes: TextView){
+        val retrofitClient = RetrofitClient.getRetrofit()
+        val service = retrofitClient.create(AvaliacaoVoluntarioService::class.java)
+
+        var avaliacao = AvaliacaoVoluntario(0, refugiado, voluntario, true, false)
+
+        val callback = service.postAvaliacao(avaliacao)
+
+        callback.enqueue(object : retrofit2.Callback<List<AvaliacaoVoluntario>> {
+            override fun onResponse(
+                call: Call<List<AvaliacaoVoluntario>>?,
+                response: Response<List<AvaliacaoVoluntario>>?
+            ) {
+                val avaliacaoList = response?.body()
+                if (avaliacaoList != null) {
+                    if (response!!.isSuccessful) {
+                        btnCurtir.setImageResource(R.drawable.curtido_icon)
+                        btnDescurtir.setImageResource(R.drawable.icon_deslike)
+                        //var qtdLikes = likes.text
+                        //likes.setText(Integer.parseInt(qtdLikes.toString()) + 1)
                     } else {
                         val errorMessage = response?.errorBody().toString()
                     }

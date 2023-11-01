@@ -13,6 +13,23 @@ exports.getAvaliacoesVoluntario = ('/avaliacaoVoluntario/:username', async(req, 
   }
 });
 
+exports.getAvaliacaoPorRefugiado = ('/avaliacaoVoluntarioPorRef/:usernameRefugiado/:usernameVoluntario', async(req, res) => {
+  const usernameRef = req.params.usernameRefugiado;
+  const usernameVolun = req.params.usernameVoluntario;
+
+  console.log(usernameRef + " " + usernameVolun)
+
+  try {
+    const { data, error } = await db.from('AvaliacaoVoluntario').select('*').eq('usernameRefugiado', usernameRef).eq('usernameVoluntario', usernameVolun);
+    if (error) {
+      throw error;
+    }
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+})
+
 exports.getAvaliacaoVoluntario = ('/avaliacaoVoluntario/:role/:username', async(req, res) => {
     const role = req.params.role
     const username = req.params.username
@@ -76,11 +93,9 @@ exports.postAvaliacaoVoluntario = ('/avaliacaoVoluntario/:id', async(req, res) =
       }
 });
 
-exports.deleteAvaliacaoVoluntario = ('/conavaliacaoVoluntarioexao/:usernameRef/:usernameVolun', async(req, res) => {
-    const usernameRef = req.params.usernameRef;
-    const usernameVolun = req.params.usernameVolun;
-
-    console.log(usernameRef, usernameVolun)
+exports.deleteAvaliacaoVoluntario = ('/conavaliacaoVoluntarioexao/:usernameRefugiado/:usernameVoluntario', async(req, res) => {
+    const usernameRef = req.params.usernameRefugiado;
+    const usernameVolun = req.params.usernameVoluntario;
 
     try {
       const { data, error } = await db
