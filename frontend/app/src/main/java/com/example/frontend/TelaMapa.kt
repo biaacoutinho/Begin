@@ -128,7 +128,7 @@ class TelaMapa : AppCompatActivity() {
         //setUpData()
     }
 
-/*
+
     private val onMapClickListener = object : OnMapClickListener {}
       fun onMapClick(point: LatLng) {
 
@@ -149,8 +149,9 @@ class TelaMapa : AppCompatActivity() {
                 }
             }
         }
-    }*/
-    /*private open fun setupSource(loadedStyle: Style) {
+    }
+
+    private open fun setupSource(loadedStyle: Style) {
         source = GeoJsonSource(GEOJSON_SOURCE_ID)
         loadedStyle.addSource(source)
     }
@@ -165,7 +166,7 @@ class TelaMapa : AppCompatActivity() {
         }
     }
 }
-    */
+
 
 
     private fun setupGesturesListener() {

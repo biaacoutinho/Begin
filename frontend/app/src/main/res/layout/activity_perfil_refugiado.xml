@@ -75,6 +75,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.17"
+                app:background="@drawable/round_image_view"
                 app:srcCompat="@drawable/name_icon" />
 
             <TextView

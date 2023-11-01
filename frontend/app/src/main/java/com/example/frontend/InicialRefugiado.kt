@@ -49,10 +49,10 @@ class InicialRefugiado : AppCompatActivity() {
         }
 
         btnDoacao.setOnClickListener() {
-            startActivity(Intent(this, Ong::class.java))
+            startActivity(Intent(this, Doacao::class.java))
         }
         secaoDoacao.setOnClickListener() {
-            startActivity(Intent(this, Ong::class.java))
+            startActivity(Intent(this, Doacao::class.java))
         }
 
         secaoVoluntarios.setOnClickListener() {

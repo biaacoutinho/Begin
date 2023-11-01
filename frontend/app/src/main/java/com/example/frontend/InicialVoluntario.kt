@@ -38,7 +38,7 @@ class InicialVoluntario : AppCompatActivity() {
         }
 
         btnDoacao.setOnClickListener(){
-            val intent = Intent(this, Ong::class.java)
+            val intent = Intent(this, Doacao::class.java)
             intent.putExtra("ondeVeio", "voluntario")
             startActivity(intent)
         }
