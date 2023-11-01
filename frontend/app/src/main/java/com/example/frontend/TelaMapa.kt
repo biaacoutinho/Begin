@@ -2,18 +2,13 @@ package com.example.frontend
 
 //import com.example.frontend.utils.LocationPermissionHelper
 
-import android.content.ContentValues.TAG
-import android.graphics.PointF
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
-import com.google.gson.JsonElement
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.android.gestures.MoveGestureDetector
-import com.mapbox.geojson.Feature
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
@@ -24,6 +19,8 @@ import com.mapbox.maps.plugin.gestures.gestures
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorBearingChangedListener
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
 import com.mapbox.maps.plugin.locationcomponent.location
+
+
 //import kotlinx.coroutines.DefaultExecutor.key
 //import kotlinx.coroutines.NonCancellable.key
 
@@ -127,9 +124,13 @@ class TelaMapa : AppCompatActivity() {
             initLocationComponent()
             setupGesturesListener()
         }
+        //mapView.getMapboxMap().addOnMapClickListener(onMapClickListener)
+        //setUpData()
     }
 
-    /*fun onMapClick(point: LatLng) {
+/*
+    private val onMapClickListener = object : OnMapClickListener {}
+      fun onMapClick(point: LatLng) {
 
 // Convert LatLng coordinates to screen pixel and only query the rendered features.
         val pixel: PointF = mapView.getMapboxMap().getProjection().toScreenLocation(point)
@@ -149,6 +150,23 @@ class TelaMapa : AppCompatActivity() {
             }
         }
     }*/
+    /*private open fun setupSource(loadedStyle: Style) {
+        source = GeoJsonSource(GEOJSON_SOURCE_ID)
+        loadedStyle.addSource(source)
+    }
+
+    open fun setUpData() {
+    if (mapboxMap != null) {
+        mapboxMap.getStyle { style ->
+            setupSource(style)
+            setUpClickLocationIconImage(style)
+            setUpClickLocationMarkerLayer(style)
+            setUpInfoWindowLayer(style)
+        }
+    }
+}
+    */
+
 
     private fun setupGesturesListener() {
         mapView.gestures.addOnMoveListener(onMoveListener)
