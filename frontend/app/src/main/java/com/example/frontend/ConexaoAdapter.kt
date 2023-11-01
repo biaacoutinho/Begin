@@ -16,9 +16,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.frontend.API.RetrofitClient
 import com.example.frontend.API.models.Conexao
 import com.example.frontend.API.models.Refugiado
+import com.example.frontend.API.models.Voluntario
 import com.example.frontend.API.services.ConexaoService
 import com.example.frontend.API.services.ProfilePictureService
 import com.example.frontend.API.services.RefugiadoService
+import com.example.frontend.API.services.VoluntarioService
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.imageview.ShapeableImageView
 import com.squareup.picasso.Picasso
@@ -69,6 +71,14 @@ class ConexaoAdapter(var mList: List<ConexaoData>, private val context: Context,
                 deletarConexao(mList[position].user, holder.btnConectar, holder)
             else
                 salvarConexao(mList[position].user, holder.btnConectar, holder)
+        }
+
+        holder.itemView.setOnClickListener {
+            val userVolun = mList[position].user
+            val intent = Intent(context, PerfilVoluntario::class.java)
+            var voluntario = Voluntario("", "", "", "", "", "", "", "")
+            intent.putExtra("ondeVeio", "conexao")
+            getVoluntario(userVolun, voluntario, intent)
         }
     }
 
@@ -207,19 +217,39 @@ class ConexaoAdapter(var mList: List<ConexaoData>, private val context: Context,
         })
     }
 
-    /*fun isURLValid(url: String): Boolean {
-        val client = OkHttpClient()
-        val request = Request.Builder()
-            .url(url)
-            .head() // Use uma solicitação HEAD para verificar a existência da URL
-            .build()
+    fun getVoluntario(volun : String, voluntario: Voluntario, intent: Intent){
+        val retrofitClient = RetrofitClient.getRetrofit()
+        val service = retrofitClient.create(VoluntarioService::class.java)
+        val refCallback = service.getVoluntario(volun)
 
-        try {
-            val response: okhttp3.Response = client.newCall(request).execute()
-            Log.d("responsta", response.code.toString())
-            return response.code == 200 // 200 indica uma resposta bem-sucedida
-        } catch (e: Exception) {
-            return false // Lidar com exceções, como falta de conectividade ou erros de rede
-        }
-    }*/
+        refCallback.enqueue(object : retrofit2.Callback<List<Voluntario>> {
+            override fun onResponse(
+                call: Call<List<Voluntario>>?,
+                response: Response<List<Voluntario>>?
+            ) {
+                val voluntarioList = response?.body()
+                if (voluntarioList != null) {
+                    if (response!!.isSuccessful) {
+                        voluntario.nome = voluntarioList[0].nome
+                        voluntario.username = voluntarioList[0].username
+                        voluntario.senha = voluntarioList[0].senha
+                        voluntario.idioma = voluntarioList[0].idioma
+                        voluntario.cpf = voluntarioList[0].cpf
+                        voluntario.telefone = voluntarioList[0].telefone
+                        voluntario.habilidade = voluntarioList[0].habilidade
+                        voluntario.email = voluntarioList[0].email
+                        intent.putExtra("voluntario", voluntario)
+                        context.startActivity(intent)
+                    } else {
+                        val errorMessage = response?.errorBody().toString()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<Voluntario>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
 }

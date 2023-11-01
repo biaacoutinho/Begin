@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -45,58 +46,90 @@ class perfilRefugiado : AppCompatActivity() {
         val tvTelefone = findViewById<TextView>(R.id.tvTelefone)
         val tvEmail = findViewById<TextView>(R.id.tvEmail)
         val btnDeslogin = findViewById<TextView>(R.id.btLogOut)
+        val btnVoltar = findViewById<TextView>(R.id.btnVoltar)
         val btnEditRef = findViewById<FloatingActionButton>(R.id.btnEditarRefugiado)
         imgPerfil = findViewById<ShapeableImageView>(R.id.imgPerfilRefugiado)
 
-        val gUser = application as GlobalUser
-        val user = gUser.getGlobalRefugiado()!!
+        var ondeVeio = intent.getStringExtra("ondeVeio")
 
-        btnDeslogin.setOnClickListener(){
+        if(ondeVeio == "solicitacao" || ondeVeio == "conexoes")
+        {
+            btnDeslogin.visibility = View.INVISIBLE
+            btnDeslogin.isClickable = false
+            btnEditRef.visibility = View.INVISIBLE
+            btnEditRef.isClickable = false
+            val user: Refugiado = intent.getSerializableExtra("refugiado") as Refugiado
+            tvNome.text = user?.nome
+            tvUsername.text = "@" + user?.username
+            tvIdiomas.text = user?.idioma
+            tvPais.text = user?.paisOrigem
+
+            if (user?.telefone != null)
+                tvTelefone.text = user?.telefone
+            else
+                tvTelefone.text = "Nenhum telefone foi cadastrado"
+
+            if (user?.email != null)
+                tvEmail.text = user?.email
+            else
+                tvEmail.text = "Nenhum email foi cadastrado"
+
+            btnVoltar.setOnClickListener{
+                if (ondeVeio == "solicitacao")
+                    startActivity(Intent(this, Solicitacoes::class.java))
+                else
+                    startActivity(Intent(this, Conexoes::class.java))
+
+            }
+            atualizarImagem(user.username)
+        }
+        else{
             val gUser = application as GlobalUser
-            gUser.setGlobalRefugiado(null)
+            val user = gUser.getGlobalRefugiado()!!
 
-            val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            finish()
+            btnDeslogin.setOnClickListener(){
+                val gUser = application as GlobalUser
+                gUser.setGlobalRefugiado(null)
+
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+            }
+
+            btnEditRef.setOnClickListener(){
+                startActivity(Intent(this, EditarPerfilRefugiado::class.java))
+            }
+
+            imgPerfil.setOnClickListener(){
+                seletorDeImagem()
+            }
+
+            tvNome.text = user?.nome
+            tvUsername.text = "@" + user?.username
+            tvIdiomas.text = user?.idioma
+            tvPais.text = user?.paisOrigem
+
+            if (user?.telefone != null)
+                tvTelefone.text = user?.telefone
+            else
+                tvTelefone.text = "Nenhum telefone foi cadastrado"
+
+            if (user?.email != null)
+                tvEmail.text = user?.email
+            else
+                tvEmail.text = "Nenhum email foi cadastrado"
+
+            atualizarImagem(user.username)
         }
 
-        btnEditRef.setOnClickListener(){
-            startActivity(Intent(this, EditarPerfilRefugiado::class.java))
-        }
 
-        imgPerfil.setOnClickListener(){
-            seletorDeImagem()
-        }
-
-        tvNome.text = user?.nome
-        tvUsername.text = "@" + user?.username
-        tvIdiomas.text = user?.idioma
-        tvPais.text = user?.paisOrigem
-
-        if (user?.telefone != null)
-            tvTelefone.text = user?.telefone
-        else
-            tvTelefone.text = "Nenhum telefone foi cadastrado"
-
-        if (user?.email != null)
-            tvEmail.text = user?.email
-        else
-            tvEmail.text = "Nenhum email foi cadastrado"
-
-        atualizarImagem()
     }
 
     private fun seletorDeImagem(){
         val i = Intent()
         i.type = "image/*"
         i.action = Intent.ACTION_GET_CONTENT
-
-        // pass the constant to compare it
-        // with the returned requestCode
-
-        // pass the constant to compare it
-        // with the returned requestCode
         launchSomeActivity.launch(i)
     }
 
@@ -107,7 +140,6 @@ class perfilRefugiado : AppCompatActivity() {
             == RESULT_OK
         ) {
             val data = result.data
-            // do your operation from here....
             if (data != null
                 && data.data != null
             ) {
@@ -177,11 +209,10 @@ class perfilRefugiado : AppCompatActivity() {
         })
     }
 
-    fun atualizarImagem(){
+    fun atualizarImagem(username: String){
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(ProfilePictureService::class.java)
-        Log.d("aaa", "foi")
-        val callback: Call<ResponseBody> = service.getPicture("Rajah")
+        val callback: Call<ResponseBody> = service.getPicture(username)
 
         callback.enqueue(object : retrofit2.Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {

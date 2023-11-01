@@ -122,6 +122,9 @@
         <activity
             android:name=".SolicitacoesAdapter">
         </activity>
+        <activity
+            android:name=".Conexoes">
+        </activity>
     </application>
 
 </manifest>

@@ -1,29 +1,30 @@
 package com.example.frontend.API.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Voluntario(
     @SerializedName("username")
-    val username: String,
+    var username: String,
 
     @SerializedName("nome")
-    val nome: String,
+    var nome: String,
 
     @SerializedName("senha")
-    val senha: String,
+    var senha: String,
 
     @SerializedName("idioma")
-    val idioma: String,
+    var idioma: String,
 
     @SerializedName("cpf")
-    val cpf: String,
+    var cpf: String,
 
     @SerializedName("telefone")
-    val telefone: String,
+    var telefone: String,
 
     @SerializedName("habilidade")
-    val habilidade: String,
+    var habilidade: String,
 
     @SerializedName("email")
-    val email: String? = null
-)
+    var email: String? = null
+) : Serializable

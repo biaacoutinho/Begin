@@ -38,8 +38,9 @@ class Solicitacoes : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         addDataToList(user.username)
-        adapter = SolicitacoesAdapter(mList, user)
+        adapter = SolicitacoesAdapter(mList, user, this)
         recyclerView.adapter = adapter
+
 
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {

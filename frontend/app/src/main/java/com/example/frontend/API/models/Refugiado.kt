@@ -1,26 +1,27 @@
 package com.example.frontend.API.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Refugiado (
     @SerializedName("username")
-    val username: String,
+    var username: String,
 
     @SerializedName("nome")
-    val nome: String,
+    var nome: String,
 
     @SerializedName("senha")
-    val senha: String,
+    var senha: String,
 
     @SerializedName("idioma")
-    val idioma: String,
+    var idioma: String,
 
     @SerializedName("paisDeOrigem")
-    val paisOrigem: String? = null,
+    var paisOrigem: String? = null,
 
     @SerializedName("telefone")
-    val telefone: String? = null,
+    var telefone: String? = null,
 
     @SerializedName("email")
-    val email: String? = null
-    )
+    var email: String? = null
+    ) : Serializable
