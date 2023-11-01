@@ -238,6 +238,7 @@ class ConexaoAdapter(var mList: List<ConexaoData>, private val context: Context,
                         voluntario.telefone = voluntarioList[0].telefone
                         voluntario.habilidade = voluntarioList[0].habilidade
                         voluntario.email = voluntarioList[0].email
+                        Toast.makeText(context, voluntario.username, Toast.LENGTH_LONG).show()
                         intent.putExtra("voluntario", voluntario)
                         context.startActivity(intent)
                     } else {

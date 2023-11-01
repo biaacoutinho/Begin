@@ -41,14 +41,12 @@ class ConexaoVoluntarioAdapter(var mList: List<SolicitacoesData>, var context: C
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConexoesViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.activity_card_conexao, parent, false)
-        Log.d("sera", "foi??????")
         return ConexoesViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ConexoesViewHolder, position: Int) {
         holder.nomeUsuario.text = mList[position].nomeRefugiado
         holder.user.text = "@" + mList[position].userRefugiado
-        Log.d("aaasasaads", mList[position].nomeRefugiado)
         getProfileImage(mList[position].userRefugiado, holder.imgPerfil)
 
         holder.itemView.setOnClickListener {

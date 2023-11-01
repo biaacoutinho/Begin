@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -47,6 +48,8 @@ class PerfilVoluntario: AppCompatActivity() {
 
         if(ondeVeio == "conexao")
         {
+            Toast.makeText(this@PerfilVoluntario, "entrou?", Toast.LENGTH_LONG).show()
+
             btnDeslogin.visibility = View.INVISIBLE
             btnDeslogin.isClickable = false
             btnEditar.visibility = View.INVISIBLE
@@ -75,12 +78,13 @@ class PerfilVoluntario: AppCompatActivity() {
             }
 
             btnCurtir.setOnClickListener(){
-                //salvarCurtida(user.username, refugiado!!.username, btnCurtir, btnDescurtir, qtdLikes, qtdDislikes)
+                salvarCurtida(user.username, refugiado!!.username, btnCurtir, btnDescurtir, qtdLikes, qtdDislikes)
             }
 
-            //getAvaliacaoDoRefugiado(user.username, refugiado!!.username, btnCurtir, btnDescurtir)
+            getAvaliacaoDoRefugiado(user.username, refugiado!!.username, btnCurtir, btnDescurtir)
             getLikesEDislikes(user.username, qtdLikes, qtdDislikes)
 
+            Toast.makeText(this@PerfilVoluntario, "Foi?????????", Toast.LENGTH_LONG).show()
         }
         else{
             btnCurtir.isClickable = false
@@ -229,8 +233,9 @@ class PerfilVoluntario: AppCompatActivity() {
                     if (response!!.isSuccessful) {
                         btnCurtir.setImageResource(R.drawable.curtido_icon)
                         btnDescurtir.setImageResource(R.drawable.icon_deslike)
-                        //var qtdLikes = likes.text
-                        //likes.setText(Integer.parseInt(qtdLikes.toString()) + 1)
+                        var qtdLikes = likes.text
+                        likes.setText(Integer.parseInt(qtdLikes.toString()) + 1)
+                        Toast.makeText(this@PerfilVoluntario, qtdLikes.toString(), Toast.LENGTH_LONG).show()
                     } else {
                         val errorMessage = response?.errorBody().toString()
                     }
