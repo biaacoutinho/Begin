@@ -102,7 +102,7 @@ class TelaMapa : AppCompatActivity() {
 
     private val onMoveListener = object : OnMoveListener {
         override fun onMoveBegin(detector: MoveGestureDetector) {
-            onCameraTrackingDismissed()
+            //onCameraTrackingDismissed()
         }
 
         override fun onMove(detector: MoveGestureDetector): Boolean {
@@ -121,15 +121,15 @@ class TelaMapa : AppCompatActivity() {
         mapView.getMapboxMap().loadStyleUri(
             Style.MAPBOX_STREETS
         ) {
-            initLocationComponent()
-            setupGesturesListener()
+            //initLocationComponent()
+            //setupGesturesListener()
         }
         //mapView.getMapboxMap().addOnMapClickListener(onMapClickListener)
         //setUpData()
     }
 
 
-    private val onMapClickListener = object : OnMapClickListener {}
+    /*private val onMapClickListener = object : OnMapClickListener {}
       fun onMapClick(point: LatLng) {
 
 // Convert LatLng coordinates to screen pixel and only query the rendered features.
@@ -164,12 +164,12 @@ class TelaMapa : AppCompatActivity() {
             setUpClickLocationMarkerLayer(style)
             setUpInfoWindowLayer(style)
         }
-    }
+    }*/
 }
 
 
 
-    private fun setupGesturesListener() {
+    /*private fun setupGesturesListener() {
         mapView.gestures.addOnMoveListener(onMoveListener)
     }
 
@@ -230,4 +230,4 @@ class TelaMapa : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         locationPermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
-}
+}*/

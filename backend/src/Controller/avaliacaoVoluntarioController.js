@@ -17,8 +17,6 @@ exports.getAvaliacaoPorRefugiado = ('/avaliacaoVoluntarioPorRef/:usernameRefugia
   const usernameRef = req.params.usernameRefugiado;
   const usernameVolun = req.params.usernameVoluntario;
 
-  console.log(usernameRef + " " + usernameVolun)
-
   try {
     const { data, error } = await db.from('AvaliacaoVoluntario').select('*').eq('usernameRefugiado', usernameRef).eq('usernameVoluntario', usernameVolun);
     if (error) {
@@ -55,12 +53,14 @@ exports.getAvaliacaoVoluntario = ('/avaliacaoVoluntario/:role/:username', async(
 exports.putAvaliacaoVoluntario = ('/avaliacaoVoluntario/', async(req, res) => {
     const usernameRef = req.body.usernameRefugiado
     const usernameVolun = req.body.usernameVoluntario
+    const like = req.body.like;
+    const dislike = req.body.dislike;
 
     try {
         const { data, error } = await db
             .from('AvaliacaoVoluntario')
             .insert([
-                { usernameRefugiado: usernameRef, usernameVoluntario: usernameVolun },
+                { usernameRefugiado: usernameRef, usernameVoluntario: usernameVolun, like: like, dislike: dislike},
                 ])
             .select()
 
@@ -77,7 +77,6 @@ exports.postAvaliacaoVoluntario = ('/avaliacaoVoluntario/:id', async(req, res) =
     const id = req.params.id;
     const like = req.body.like;
     const dislike = req.body.dislike;
-
     try {
         const { data, error } = await db
           .from('AvaliacaoVoluntario')

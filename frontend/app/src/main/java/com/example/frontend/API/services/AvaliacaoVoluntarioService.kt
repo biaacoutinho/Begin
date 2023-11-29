@@ -24,7 +24,7 @@ interface AvaliacaoVoluntarioService {
     fun postAvaliacao(@Body avaliacao: AvaliacaoVoluntario): Call<List<AvaliacaoVoluntario>>
 
     @POST("/avaliacaoVoluntario/{id}")
-    fun putAvaliacao(@Path("id") id: Int, @Body conexao: Conexao): Call<List<AvaliacaoVoluntario>>
+    fun putAvaliacao(@Path("id") id: Int, @Body avaliacao: AvaliacaoVoluntario): Call<List<AvaliacaoVoluntario>>
 
     @DELETE("/avaliacaoVoluntario/{usernameRefugiado}/{usernameVoluntario}")
     fun deleteAvaliacao(@Path("usernameRefugiado") usernameRefugiado: String, @Path("usernameVoluntario") usernameVoluntario: String): Call<List<AvaliacaoVoluntario>>

@@ -17,10 +17,13 @@ import com.example.frontend.API.services.AvaliacaoVoluntarioService
 import com.example.frontend.API.services.RefugiadoService
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class PerfilVoluntario: AppCompatActivity() {
 
+    var jaAvaliou: Boolean = false
+    var avaliacaoFeita: AvaliacaoVoluntario? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil_voluntario)
@@ -48,8 +51,6 @@ class PerfilVoluntario: AppCompatActivity() {
 
         if(ondeVeio == "conexao")
         {
-            Toast.makeText(this@PerfilVoluntario, "entrou?", Toast.LENGTH_LONG).show()
-
             btnDeslogin.visibility = View.INVISIBLE
             btnDeslogin.isClickable = false
             btnEditar.visibility = View.INVISIBLE
@@ -61,6 +62,8 @@ class PerfilVoluntario: AppCompatActivity() {
 
             val gUser = application as GlobalUser
             val refugiado = gUser.getGlobalRefugiado()
+
+            jaAvaliou = false
 
             tvNome.text = user?.nome
             tvUsername.text = "@" + user?.username
@@ -77,14 +80,30 @@ class PerfilVoluntario: AppCompatActivity() {
                 startActivity(Intent(this, InicialVoluntario::class.java))
             }
 
-            btnCurtir.setOnClickListener(){
-                salvarCurtida(user.username, refugiado!!.username, btnCurtir, btnDescurtir, qtdLikes, qtdDislikes)
+            btnCurtir.setOnClickListener {
+                if (jaAvaliou) {
+                    if (avaliacaoFeita?.like != true) {
+                        salvarAvaliacao(user.username, refugiado!!.username, btnCurtir, btnDescurtir, qtdLikes, qtdDislikes, true)
+                    }
+                } else {
+                    salvarAvaliacao(user.username, refugiado!!.username, btnCurtir, btnDescurtir, qtdLikes, qtdDislikes, true)
+                }
+            }
+
+
+            btnDescurtir.setOnClickListener(){
+                if (jaAvaliou) {
+                    if (avaliacaoFeita?.dislike != true) {
+                        salvarAvaliacao(user.username, refugiado!!.username, btnCurtir, btnDescurtir, qtdLikes, qtdDislikes, false)
+                    }
+                } else {
+                    salvarAvaliacao(user.username, refugiado!!.username, btnCurtir, btnDescurtir, qtdLikes, qtdDislikes, false) 
+                }
             }
 
             getAvaliacaoDoRefugiado(user.username, refugiado!!.username, btnCurtir, btnDescurtir)
             getLikesEDislikes(user.username, qtdLikes, qtdDislikes)
 
-            Toast.makeText(this@PerfilVoluntario, "Foi?????????", Toast.LENGTH_LONG).show()
         }
         else{
             btnCurtir.isClickable = false
@@ -187,17 +206,16 @@ class PerfilVoluntario: AppCompatActivity() {
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(AvaliacaoVoluntarioService::class.java)
         val callback = service.getAvaliacaoPorRefugiado(refugiado, voluntario)
-        Log.d("volun", voluntario)
-        Log.d("ref", refugiado)
         callback.enqueue(object : retrofit2.Callback<List<AvaliacaoVoluntario>> {
             override fun onResponse(
                 call: Call<List<AvaliacaoVoluntario>>?,
                 response: Response<List<AvaliacaoVoluntario>>?
             ) {
                 val avaliacaoList = response?.body()
-                if (avaliacaoList != null) {
+                if (!avaliacaoList.isNullOrEmpty()) {
                     if (response!!.isSuccessful) {
-                        Log.d("aaasaaaa", avaliacaoList[0].usernameRefugiado)
+                        jaAvaliou = true
+                        avaliacaoFeita = avaliacaoList[0]
                         if (avaliacaoList[0].like)
                             btnCurtir.setImageResource(R.drawable.curtido_icon)
                         else if(avaliacaoList[0].dislike)
@@ -215,13 +233,33 @@ class PerfilVoluntario: AppCompatActivity() {
         })
     }
 
-    fun salvarCurtida(voluntario: String, refugiado: String, btnCurtir: FloatingActionButton, btnDescurtir: FloatingActionButton, likes: TextView, dislikes: TextView){
+    fun salvarAvaliacao(
+        voluntario: String,
+        refugiado: String,
+        btnCurtir: FloatingActionButton,
+        btnDescurtir: FloatingActionButton,
+        likes: TextView,
+        dislikes: TextView,
+        curtiu: Boolean
+    ) {
         val retrofitClient = RetrofitClient.getRetrofit()
         val service = retrofitClient.create(AvaliacaoVoluntarioService::class.java)
 
-        var avaliacao = AvaliacaoVoluntario(0, refugiado, voluntario, true, false)
+        var like = true
+        var dislike = true
+        if(curtiu)
+            dislike = false
+        else
+            like = false
 
-        val callback = service.postAvaliacao(avaliacao)
+        val avaliacao = AvaliacaoVoluntario(0, refugiado, voluntario, like, dislike)
+
+        var callback: Call<List<AvaliacaoVoluntario>>
+
+        if (jaAvaliou)
+            callback = service.putAvaliacao(avaliacaoFeita!!.id, avaliacao)
+        else
+            callback = service.postAvaliacao(avaliacao)
 
         callback.enqueue(object : retrofit2.Callback<List<AvaliacaoVoluntario>> {
             override fun onResponse(
@@ -229,23 +267,44 @@ class PerfilVoluntario: AppCompatActivity() {
                 response: Response<List<AvaliacaoVoluntario>>?
             ) {
                 val avaliacaoList = response?.body()
-                if (avaliacaoList != null) {
-                    if (response!!.isSuccessful) {
-                        btnCurtir.setImageResource(R.drawable.curtido_icon)
-                        btnDescurtir.setImageResource(R.drawable.icon_deslike)
-                        var qtdLikes = likes.text
-                        likes.setText(Integer.parseInt(qtdLikes.toString()) + 1)
-                        Toast.makeText(this@PerfilVoluntario, qtdLikes.toString(), Toast.LENGTH_LONG).show()
+                if (!avaliacaoList.isNullOrEmpty()) {
+                    if (response.isSuccessful) {
+                        avaliacaoFeita = avaliacaoList[0]
+                        val qtdLikes = likes.text.toString().toInt()
+                        val qtdDislikes = dislikes.text.toString().toInt()
+
+                        if (curtiu)
+                        {
+                            btnCurtir.setImageResource(R.drawable.curtido_icon)
+                            btnDescurtir.setImageResource(R.drawable.icon_deslike)
+
+                            if (jaAvaliou)
+                                dislikes.text = (qtdDislikes - 1).toString()
+
+                            likes.text = (qtdLikes + 1).toString()
+                            jaAvaliou = true
+                        }
+                        else
+                        {
+                            btnCurtir.setImageResource(R.drawable.icon_curtir)
+                            btnDescurtir.setImageResource(R.drawable.descutido_icon)
+
+                            if (jaAvaliou)
+                                likes.text = (qtdLikes - 1).toString()
+
+                            dislikes.text = (qtdDislikes + 1).toString()
+                            jaAvaliou = true
+                        }
+                        Toast.makeText(this@PerfilVoluntario, "Avaliação feita com sucesso", Toast.LENGTH_LONG).show()
                     } else {
-                        val errorMessage = response?.errorBody().toString()
+                        val errorMessage = response?.errorBody()?.string()
                     }
                 }
             }
 
             override fun onFailure(call: Call<List<AvaliacaoVoluntario>>, t: Throwable) {
-                TODO("Not yet implemented")
+                // Lidar com o caso de falha
             }
-
         })
     }
 }
