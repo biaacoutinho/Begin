@@ -1,10 +1,14 @@
 <p align="center">
+  <h1 align="center">Begin</h1>
+</p>
+
+<p align="center">
 <img loading="lazy" src="http://img.shields.io/static/v1?label=Status&message=Finished&color=lightblue&style=for-the-badge"/>
 <img loading="lazy" src="http://img.shields.io/static/v1?label=License&message=MIT&color=lightblue&style=for-the-badge"/>
 <img loading="lazy" src="http://img.shields.io/static/v1?label=Release%20Date&message=November&color=lightblue&style=for-the-badge"/>
 </p>
 
-# Begin
+
 
 Welcome to Begin, an app designed to support immigrants in Brazil by fostering connections with volunteers and facilitating access to essential resources.
 
