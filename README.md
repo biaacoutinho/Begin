@@ -12,7 +12,7 @@
 
 Welcome to Begin, an app designed to support immigrants in Brazil by fostering connections with volunteers and facilitating access to essential resources.
 
-## Overview
+## Project Description
 
 Begin strives to create a meaningful and supportive community for refugees in Brazil. The app serves as a platform where refugees can easily connect with volunteers willing to offer assistance in various capacities.
 Additionally, Begin simplifies the process of discovering crucial locations and resources for refugees in Brazil, including shelters, welcoming centers, and essential food distribution points. This empowers refugees by providing valuable information at their fingertips, helping them navigate and access essential services with ease.
